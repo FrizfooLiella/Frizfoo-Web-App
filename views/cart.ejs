@@ -1,0 +1,416 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section cartcheckout-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Order Summary</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/cart" class="breadcumb-item">Cart</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Cart Checkout Section -->
+<section class="cart-section reveal" id="cart-checkout-section">
+    <div class="container-cart-checkout">
+
+        <!-- Judul Cart Section -->
+        <h1 class="heading-cart">
+            <i class="far fa-shopping-cart"></i> Shopping Cart
+        </h1>
+
+        <!-- Isi Cart Section -->
+        <div class="item-cart-flex">
+
+            <!-- Checkout section -->
+            <section class="checkout">
+
+                <!-- Judul Checkout Section -->
+                <h2 class="section-heading">Payment Details</h2>
+
+                <!-- Payment Method & Form -->
+                <div class="payment-form">
+
+                    <!-- Payment Method -->
+                    <div class="payment-method">
+
+                        <!-- Btn Payment Method Credit Card-->
+                        <button class="method">
+                            <i class="fas fa-credit-card"></i>
+
+                            <span>Virtual Account Payment</span>
+
+                            <i class="far fa-check-circle checkmark"></i>
+                        </button>
+
+                        <!-- Btn Payment Method Whatsapp-->
+                        <button class="method">
+                            <i class="fab fa-whatsapp"></i>
+
+                            <span>WhatsApp</span>
+
+                            <i class="far fa-check-circle checkmark"></i>
+                        </button>
+
+                    </div>
+
+                    <!-- Form Payment -->
+                    <!-- <form action="#" class="form-payment-credit-card">
+
+                        <div class="cardholder-name">
+                            <label for="cardholder-name" class="label-default">Cardholder name</label>
+                            <input type="text" name="cardholder-name" id="cardholder-name" class="input-default">
+                        </div>
+
+                        <div class="card-number">
+                            <label for="card-number" class="label-default">Card number</label>
+                            <input type="number" name="card-number" id="card-number" class="input-default">
+                        </div>
+
+                        <div class="input-flex">
+
+                            <div class="expire-date">
+                                <label for="expire-date" class="label-default">Expiration date</label>
+
+                                <div class="input-flex">
+
+                                    <input type="number" name="day" id="expire-date" placeholder="31" min="1" max="31"
+                                        class="input-default">
+                                    /
+                                    <input type="number" name="month" id="expire-date" placeholder="12" min="1" max="12"
+                                        class="input-default">
+
+                                </div>
+                            </div>
+
+                            <div class="cvv">
+                                <label for="cvv" class="label-default">CVV</label>
+                                <input type="number" name="cvv" id="cvv" class="input-default">
+                            </div>
+
+                        </div>
+
+                    </form> -->
+
+
+                    <% if (!alldataUserProfile) { %>
+
+                    <div id="pesan-error">
+                        <ul>
+                            <li>Data Alamat User Tidak di Temukan</li>
+                        </ul>
+                    </div>
+
+                    <% } else {%>
+
+                    <!-- Address User -->
+                    <div class="address-box">
+                        <i class="far fa-map-marker-alt"></i>
+
+                        <div class="address-data">
+                            <span class="alamat">
+                                <%= alldataUserProfile.alamat %>
+                            </span>
+                            <span class="kotakecamatan">
+                                Kota <%= alldataUserProfile.kota %> - <%= alldataUserProfile.kecamatan %>
+                            </span>
+                            <span class="provinsi">
+                                <%= alldataUserProfile.provinsi %>
+                            </span>
+                            <span class="kodepos">
+                                ID <%= alldataUserProfile.kodepos %>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Btn Update Profile User di Cart Section -->
+                    <a href="/profile/<%= alldataUserProfile._id %>" class="btn-see-profile">My Profile</a>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Button Checkout Pay -->
+                <button class="btn-checkout-pay">
+                    <b>Pay</b> Rp <span id="payAmount">0</span>
+                </button>
+
+            </section>
+
+            <!-- Cart section -->
+            <section class="cart">
+
+                <!-- User Item Cart -->
+                <div class="cart-item-box">
+                    <h2 class="section-heading">Order Summery</h2>
+
+                    <!-- Item ke-1 -->
+                    <div class="product-card">
+
+                        <div class="card">
+                            <!-- Gambar Item -->
+                            <div class="img-box">
+                                <img src="/img/cart/green-tomatoes.jpg" alt=" Green tomatoes" width="80px" height="80px"
+                                    class="product-img">
+                            </div>
+
+                            <!-- Nama & Detail Item -->
+                            <div class="detail">
+
+                                <h4 class="product-name">Green Tomatoes 1 Kilo</h4>
+
+                                <div class="wrapper">
+
+                                    <div class="product-qty">
+                                        <!-- Tombol Kurang -->
+                                        <button id="decrement" class="btn-decrement-cart">
+                                            <i class="far fa-minus"></i>
+                                        </button>
+
+                                        <!-- Jumlah Item -->
+                                        <span id="quantity">1</span>
+
+                                        <!-- Tombol Tambah -->
+                                        <button id="increment" class="btn-increment-cart">
+                                            <i class="far fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="price">
+                                        Rp <span id="price">1.25</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="weight">
+                                    Berat : <span id="beratproduk">500 gr</span>
+                                </div>
+
+                            </div>
+
+                            <!-- Butoon Hapus Item -->
+                            <button class="product-close-btn">
+                                <i class="far fa-times"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Item ke-2 -->
+                    <div class="product-card">
+
+                        <div class="card">
+                            <!-- Gambar Item -->
+                            <div class="img-box">
+                                <img src="/img/cart/cabbage.jpg" alt=" Cabbage" width="80px" height="80px"
+                                    class="product-img">
+                            </div>
+
+                            <!-- Nama & Detail Item -->
+                            <div class="detail">
+
+                                <h4 class="product-name">Cabbage 1 Pcs</h4>
+
+                                <div class="wrapper">
+
+                                    <div class="product-qty">
+                                        <!-- Tombol Kurang -->
+                                        <button id="decrement" class="btn-decrement-cart">
+                                            <i class="far fa-minus"></i>
+                                        </button>
+
+                                        <!-- Jumlah Item -->
+                                        <span id="quantity">1</span>
+
+                                        <!-- Tombol Tambah -->
+                                        <button id="increment" class="btn-increment-cart">
+                                            <i class="far fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="price">
+                                        Rp <span id="price">1.25</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="weight">
+                                    Berat : <span id="beratproduk">500 gr</span>
+                                </div>
+
+                            </div>
+
+                            <!-- Butoon Hapus Item -->
+                            <button class="product-close-btn">
+                                <i class="far fa-times"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Total Price & Coupon -->
+                <div class="wrapper">
+
+                    <!-- Apply Coupon -->
+                    <div class="discount-token">
+
+                        <label for="discount-token" class="label-default">Gift card/Discount code</label>
+
+                        <div class="wrapper-flex">
+
+                            <input type="text" name="discount-token" id="discount-token" class="input-default">
+
+                            <button class="btn-apply-coupon">Apply</button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Total Price -->
+                    <div class="amount">
+
+                        <!-- Cart Subtotal -->
+                        <div class="subtotal">
+                            <span>Cart Subtotal</span>
+                            <span>Rp
+                                <span id="subtotal">0</span>
+                            </span>
+                        </div>
+
+                        <!-- Tax -->
+                        <div class="tax">
+                            <span>Tax</span>
+                            <span>Rp
+                                <span id="tax">0</span>
+                            </span>
+                        </div>
+
+                        <!-- Discount Code -->
+                        <div class="discount-code">
+                            <span>Discount Code</span>
+                            <span>-Rp
+                                <span id="discount-amount">0</span>
+                            </span>
+                        </div>
+
+                        <!-- Shipping -->
+                        <!-- <div class="shipping">
+                            <span>Shipping</span>
+                            <span>Rp
+                                <span id="shipping">0.00</span>
+                            </span>
+                        </div> -->
+
+                        <!-- Total Price -->
+                        <div class="total">
+                            <span>Total Price</span>
+                            <span>Rp
+                                <span id="total">0</span>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+    </div>
+</section>
+<!-- Cart Checkout Section -->
+
+
+<!-- Cart User Invoice Section -->
+<section class="cart-user-invoice reveal" id="cart-user-invoice-section">
+    <!-- Judul Tabel User Invoice -->
+    <h1 class="heading-table-invoice">
+        <i class="far fa-clipboard-list"></i>
+        List Pesanan
+    </h1>
+
+    <div class="container-cart-user-invoice">
+
+        <!-- Table User Invoice -->
+        <table class="table-user-invoice">
+
+            <!-- Table Head -->
+            <thead>
+                <tr>
+                    <th>Pemesan</th>
+                    <th>Deskripsi Item</th>
+                    <th>Total Harga</th>
+                    <th>Status Pesanan</th>
+                    <th>Waktu Pemesanan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body / Isi Table -->
+            <tbody id="tbody-user-invoice">
+                <!-- Produk ke-1 -->
+                <!-- <tr>
+                    <td>Theodorus Karli</td>
+                    <td>Pembelian Produk Bakso Ikan Cedea dan Bakso Halus Teryxu</td>
+                    <td>Rp. <span class="total-amount-price">345.000</span></td>
+                    <td>
+                        <p class="status status-paid">Paid</p>
+                    </td>
+                    <td>2022-08-31</td>
+                    <td>
+                        <span class="action-btn">
+                            <button class="btn-refdel">Refresh</button>
+                            <button class="btn-refdel">Delete</button>
+                        </span>
+                    </td>
+                </tr> -->
+
+                <!-- Produk ke-2 -->
+                <!-- <tr>
+                    <td>William Susanto</td>
+                    <td>Pembelian Produk Bakso Ikan Cedea dan Bakso Halus Teryxu</td>
+                    <td>Rp. <span class="total-amount-price">345.000</span></td>
+                    <td>
+                        <p class="status status-pending">Pending</p>
+                    </td>
+                    <td>2022-08-31</td>
+                    <td>
+                        <span class="action-btn">
+                            <button class="btn-refdel">Refresh</button>
+                            <button class="btn-refdel">Delete</button>
+                        </span>
+                    </td>
+                </tr> -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+</section>
+<!-- Cart User Invoice Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/api/status.js"></script>
+<script src="/js/api/cartpageapi.js"></script>
+<script src="/js/api/cartpaymentapi.js"></script>
+<script src="/js/subscribeform.js"></script>

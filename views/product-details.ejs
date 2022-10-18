@@ -1,0 +1,245 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section prodetails-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Product Details</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/product-details" class="breadcumb-item">Product</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Product Details Section -->
+<section class="prodetails-section reveal" id="product-details-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+    <% if (!alldataProductDetail) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data Product Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-product-details">
+
+        <!-- Product Details img & content -->
+        <div class="wrapper">
+
+            <!-- Container Foto Kiri Detail Produk -->
+            <div class="product-details-img">
+                <!-- Foto Besar Produk -->
+                <figure class="product-display">
+                    <img src="https://drive.google.com/uc?export=view&id=<%=alldataProductDetail.products[0].productpicid[0]%>"
+                        width="700" height="700" loading="lazy" alt="<%=alldataProductDetail.products[0].namaproduct%>"
+                        data-product-display>
+                </figure>
+
+                <!-- Foto Kecil Produk -->
+                <ul class="product-thumbnail-list has-scrollbar">
+
+                    <% alldataProductDetail.products[0].productpicid.forEach((fotoproduct) => { %>
+
+                    <li class="product-thumbnail-item">
+                        <img src="https://drive.google.com/uc?export=view&id=<%= fotoproduct %>" width="700"
+                            height="700" loading="lazy" alt="<%=alldataProductDetail.products[0].namaproduct%>"
+                            data-product-thumbnail>
+                    </li>
+
+                    <% }) %>
+
+                </ul>
+
+            </div>
+
+            <!-- Container Product Details Content -->
+            <div class="product-details-content">
+                <!-- Judul Produk -->
+                <h3 class="product-title"><%=alldataProductDetail.products[0].namaproduct%></h3>
+
+                <!-- Harga Produk -->
+                <data class="product-price"><%=alldataProductDetail.products[0].hargaproduct%></data>
+
+                <!-- Rating Star Produk -->
+                <div class="rating-wrapper">
+
+                    <% for (let x = 0; x < alldataProductDetail.products[0].rating; x++) { %>
+
+                    <i class="fas fa-star"></i>
+
+                    <% } %>
+
+                </div>
+
+                <!-- Deskripsi Singkat Produk -->
+                <p class="product-text">
+                    <%=alldataProductDetail.products[0].deskripsiproduct%>
+                </p>
+
+                <!-- Berat Produk -->
+                <div class="product-weight-wrapper">
+                    <p class="product-weight-title">Berat : </p>
+                    <ul class="product-weight-list">
+
+                        <% alldataProductDetail.products[0].beratproduct.forEach((berat, i) => { %>
+
+                        <li class="product-weight-item">
+                            <input type="radio" name="weight" id="weight-<%=i+1%>" class="product-weight-radio"
+                                value="<%=berat%>">
+
+                            <label for="weight-<%=i+1%>" class="product-weight-label"><%=berat%></label>
+                        </li>
+
+                        <% }); %>
+
+                    </ul>
+                </div>
+
+                <!-- Jumlah Produk -->
+                <div class="product-qty">
+                    <p class="qty-title">Qty : </p>
+
+                    <input type="number" name="quantity" value="1" min="1" max="50" class="product-qty-input">
+
+                    <input type="hidden" name="idpenjual" value="<%=alldataProductDetail._id%>">
+
+                    <input type="hidden" name="notelppenjual"
+                        value="<%=alldataProductDetail.products[0].notelppenjual%>">
+
+                    <button class="btn-qty-to-cart" data-idProduct="<%=alldataProductDetail.products[0]._id%>">Add To
+                        Cart</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Description & Information Product Details -->
+        <h4 class="description-title">Deskripsi Produk : </h4>
+        <p class="description-text">
+            Hi!! Guyss👋🏻
+
+            Slamat datang di Platform Frizfoo🍤.
+
+            <br /> <br />
+
+            Dimana kami menghubungkan pembeli dan penjual dalam satu komunitas, khusus untuk produk Frozen Food.
+            Menyediakan berbagai macam varian makanan beku yg cocok disajikan untuk semua keluarga dan di semua
+            situasi👌🏻👌🏻
+
+            <br /> <br />
+
+            🔥🔥 BUDAYAKAN MEMBACA DESKRIPSI PRODUK YA 🔥🔥
+
+            <br /> <br />
+
+            <%=alldataProductDetail.products[0].deskripsiproduct%>
+
+            <br /> <br />
+
+            Yuk guys buruan order yuk, InsyaAllah harga baik dan Kualitas terbaik juga. Jadi gaperlu ragu tingggal
+            langsung maskkan ke keranjang dan
+            mulai lakukan pembayaran.
+
+            <br /> <br />
+
+            Pengiriman terbaik hanya dapat di kirim melalui jasa GOJEK/GRAB (Untk saat ini, hanya melayani daerah
+            Makassar) ya guys.
+        </p>
+
+        <h4 class=" description-title">Spesifikasi Produk : </h4>
+        <table class="description-table" border="1px">
+            <tbody>
+                <!-- Rating row -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Ratings</th>
+
+                    <td class="table-data">
+                        <div class="rating-wrapper">
+
+                            <% for (let x = 0; x < alldataProductDetail.products[0].rating; x++) { %>
+
+                            <i class="fas fa-star"></i>
+
+                            <% } %>
+
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Merek row -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Merek</th>
+
+                    <td class="table-data"><%=alldataProductDetail.products[0].merekproduct%></td>
+                </tr>
+
+                <!-- Seller Row -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Seller</th>
+
+                    <td class="table-data"><%=alldataProductDetail.products[0].penjual%></td>
+                </tr>
+
+                <!-- Stok row -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Stok</th>
+
+                    <td class="table-data"><%=alldataProductDetail.products[0].stokproduct%></td>
+                </tr>
+
+                <!-- Masa Penyimpanan row -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Masa Penyimpanan</th>
+
+                    <td class="table-data"><%=alldataProductDetail.products[0].masasimpanproduct%></td>
+                </tr>
+
+                <!-- Banyak Terjual -->
+                <tr class="table-row">
+                    <th class="table-heading" scope="row">Banyak Terjual</th>
+
+                    <td class="table-data"><%=alldataProductDetail.products[0].banyakterjual%></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Product Details  Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/productdetails.js"></script>
+<script src="/js/api/productdetailsapi.js"></script>
+<script src="/js/subscribeform.js"></script>

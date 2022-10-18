@@ -1,0 +1,186 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section myprouppro-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">My Profile</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/update-profile" class="breadcumb-item">Edit Profile</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Edit Profile User Section -->
+<section class="edit-profile-section reveal" id="edit-profile-user-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+
+    <% if (!alldataUserProfile) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data User Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-edit-profile">
+
+        <!-- Judul Form Register -->
+        <div class="title">Update Profile</div>
+
+        <!-- Form Edit Profile -->
+        <div class="contenteditprofileform">
+            <form action="/update-profile?_method=PUT" method="post" id="form-editprofile">
+
+                <div class="profile-details">
+
+                    <!-- Input Hidden UserID -->
+                    <input type="hidden" name="_id" value="<%= alldataUserProfile._id %>">
+
+                    <!-- Full name input -->
+                    <div class="input-box-profile">
+                        <label for="fullname" class="details">Nama Lengkap *</label>
+                        <input id="fullname" type="text" name="fullname" placeholder="Enter your name"
+                            value="<%= alldataUserProfile.fullname %>" autofocus required>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="input-box-profile">
+                        <label for="username" class="details">Nama Pengguna *</label>
+                        <input id="username" type="text" name="username" placeholder="Enter your username"
+                            value="<%= alldataUserProfile.username %>" required>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="input-box-profile">
+                        <label for="Email" class="details">Email *</label>
+                        <input id="Email" type="email" name="email" placeholder="Enter your email"
+                            value="<%= alldataUserProfile.email %>" readonly required>
+                    </div>
+
+                    <!-- Phone Number input -->
+                    <div class="input-box-profile">
+                        <label for="notelp" class="details">Nomor Telepon *</label>
+                        <input id="notelp" type="tel" name="notelp" placeholder="Cth: 6285155082349"
+                            value="<%= alldataUserProfile.notelp %>" required>
+                    </div>
+
+                    <!-- Alamat input -->
+                    <div class="input-box-profile">
+                        <label for="address" class="details">Alamat Lengkap *</label>
+                        <input id="address" type="text" name="alamat" placeholder="Enter your address"
+                            value="<%= alldataUserProfile.alamat === 'Please Update' ? '' : alldataUserProfile.alamat %>"
+                            required>
+                    </div>
+
+                    <!-- Kota input -->
+                    <div class="input-box-profile">
+                        <label for="city" class="details">Kota *</label>
+                        <input id="city" type="text" name="kota" placeholder="Enter your City"
+                            value="<%= alldataUserProfile.kota === 'Please Update' ? '' : alldataUserProfile.kota %>"
+                            required>
+                    </div>
+
+                    <!-- Kecamatan input -->
+                    <div class="input-box-profile">
+                        <label for="districts" class="details">Kecamatan *</label>
+                        <input id="districts" type="text" name="kecamatan" placeholder="Enter your Districts"
+                            value="<%= alldataUserProfile.kecamatan === 'Please Update' ? '' : alldataUserProfile.kecamatan %>"
+                            required>
+                    </div>
+
+                    <!-- Provinsi input -->
+                    <div class="input-box-profile">
+                        <label for="province" class="details">Provinsi *</label>
+                        <input id="province" type="text" name="provinsi" placeholder="Enter your Province"
+                            value="<%= alldataUserProfile.provinsi === 'Please Update' ? '' : alldataUserProfile.provinsi %>"
+                            required>
+                    </div>
+
+                    <!-- Kode Pos input -->
+                    <div class="input-box-profile">
+                        <label for="postalcode" class="details">Kode Pos *</label>
+                        <input id="postalcode" type="text" name="kodepos" placeholder="Enter your Postal Code"
+                            pattern="^([1-9])[0-9]{4}$" value="<%= alldataUserProfile.kodepos %>" required>
+                    </div>
+
+                </div>
+
+                <div class="profile-gender-details">
+                    <!-- Form Input Gender -->
+                    <input type="radio" value="Male" name="gender"
+                        <%= alldataUserProfile.gender === 'Male' ? 'checked' : '' %> id="dot-1">
+
+                    <input type="radio" value="Female" name="gender"
+                        <%= alldataUserProfile.gender === 'Female' ? 'checked' : '' %> id="dot-2">
+
+                    <input type="radio" value="Unknown" name="gender"
+                        <%= alldataUserProfile.gender === 'Unknown' ? 'checked' : '' %> id="dot-3">
+
+                    <span class="gender-title">Gender</span>
+
+                    <div class="gender-label-category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span class="gender">Prefer not to say</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="button-upprofile">
+                    <!-- Button Cancel -->
+                    <a href="/profile/<%= alldataUserProfile._id %>" class="btn-cancel-update">Cancel</a>
+
+                    <!-- Button Update Profile -->
+                    <button type="submit" class="btn-update-profile">Update Profile</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Edit Profile User Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

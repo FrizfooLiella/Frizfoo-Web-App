@@ -1,0 +1,153 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section myprouppro-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">My Profile</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/profile" class="breadcumb-item">Profile</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Profile User Section -->
+<section class="profile-section reveal" id="profile-detail-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+    <% if (!alldataUserProfile) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data User Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-profile">
+
+        <!-- User image -->
+        <div class="img-profile">
+            <img src="https://drive.google.com/uc?export=view&id=<%=alldataUserProfile.userpicid%>"
+                alt="User Profile Image">
+
+            <!-- Tombol Ganti Foto -->
+            <div class="edit-pic-profile">
+                <form action="/profile/<%= alldataUserProfile._id %>" method="post" enctype="multipart/form-data"
+                    id="form-upload-img-profile">
+                    <input type="file" name="profileImg" onchange="javascript:this.form.submit();">
+                    <i class="fas fa-camera"></i>
+                </form>
+            </div>
+        </div>
+
+        <!-- User Name -->
+        <div class="box name">
+            <i class="far fa-user-circle"></i>
+            <span>
+                <%= alldataUserProfile.fullname %>
+            </span>
+        </div>
+
+        <!-- User Gender -->
+        <div class="box gender">
+            <i class="far fa-venus-mars"></i>
+            <span>
+                <%= alldataUserProfile.gender %>
+            </span>
+        </div>
+
+        <!-- User telp -->
+        <div class="box telp">
+            <i class="far fa-phone-alt"></i>
+            <span>
+                <%= alldataUserProfile.notelp %>
+            </span>
+        </div>
+
+        <!-- User email -->
+        <div class="box email">
+            <i class="far fa-envelope"></i>
+            <span>
+                <%= alldataUserProfile.email %>
+            </span>
+        </div>
+
+        <!-- User address -->
+        <div class="box address">
+            <i class="far fa-map-marker-alt"></i>
+
+            <div class="address-data">
+                <span class="alamat">
+                    <%= alldataUserProfile.alamat %>
+                </span>
+                <span class="kotakecamatan">
+                    Kota <%= alldataUserProfile.kota %> - <%= alldataUserProfile.kecamatan %>
+                </span>
+                <span class="provinsi">
+                    <%= alldataUserProfile.provinsi %>
+                </span>
+                <span class="kodepos">
+                    ID <%= alldataUserProfile.kodepos %>
+                </span>
+            </div>
+        </div>
+
+        <!-- Button Profile User -->
+        <div class="pmbngks-btnprofile">
+
+            <!-- Button Delete Profile -->
+            <form action="/profile?_method=DELETE" method="post" id="form-btn-delete-account">
+                <input type="hidden" name="idUserDelete" value="<%= alldataUserProfile._id %>">
+                <button type="submit" class="btn-delete-account">Delete Account</button>
+            </form>
+
+            <!-- Button Update Profile -->
+            <a href="/update-profile/<%= alldataUserProfile._id %>" class="btn-up-profile">Update Profile</a>
+
+        </div>
+
+        <!-- Button Profile User 2 -->
+        <div class="pmbngks-btnprofile2">
+
+            <!-- Button Change Password User -->
+            <a href="/change-password/<%= alldataUserProfile._id %>" class="btn-chg-pass">Change Password</a>
+
+            <!-- Button Daftar Toko Seller -->
+            <!-- <a href="" class="btn-regis-shop">Daftar Toko</a> -->
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Profile User Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

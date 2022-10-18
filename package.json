@@ -1,0 +1,36 @@
+{
+  "name": "frizfoo-web-app",
+  "version": "1.0.0",
+  "description": "This is a Web Application that provides any kind of Frozen food products.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Theodorus Karli",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "googleapis": "^105.0.0",
+    "joi": "^17.6.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.5.2",
+    "nanoid": "^3.3.4",
+    "nodemailer": "^6.7.8",
+    "validator": "^13.7.0",
+    "xendit-node": "^1.21.5"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19"
+  }
+}

@@ -1,0 +1,82 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section regislogin-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Login</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/login" class="breadcumb-item">Login</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Login Section -->
+<section class="login-section reveal" id="login-user-section">
+
+    <% if(flshMsg) { %>
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+    <% } %>
+
+    <div class="container-login">
+
+        <!-- Judul Form Login -->
+        <div class="title">Silahkan Login</div>
+
+        <!-- Form Login -->
+        <form class="loginform" action="/login" method="post">
+
+            <!-- Input Email -->
+            <div class="row">
+                <i class="fas fa-user"></i>
+                <input type="email" placeholder="Enter your email" name="email" autofocus required>
+            </div>
+
+            <!-- Input Password -->
+            <div class="row">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Button Login -->
+            <div class="row button">
+                <button type="submit">Login</button>
+            </div>
+
+            <!-- Lupa Password -->
+            <div class="pass">
+                <a href="/forgot-password">Lupa Password?</a>
+            </div>
+
+            <!-- Register Page -->
+            <div class="signup-link">
+                Belum Punya Akun ? <a href="/register">Sign Up</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+<!-- Login Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

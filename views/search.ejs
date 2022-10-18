@@ -1,0 +1,95 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section search-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Search Product</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/search" class="breadcumb-item">Search</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Product Recommendation Section -->
+<section class="product-section reveal" id="product-recom-section">
+
+    <!-- Judul dan Deskripsi Recom Section -->
+    <h2 class="recom-title">
+        Search Product Result For <br />
+        <span><%= searchWord %> </span>
+    </h2>
+    <p>Humor membuat kita tetap hidup. Humor dan makanan. Jangan lupakan makanan. Kamu bisa pergi seminggu tanpa
+        tertawa, tapi tidak tanpa makanan.</p>
+
+    <!-- Product Recommendation List -->
+    <div class="pro-container">
+
+        <% if (dataSearchResult.length === 0) { %>
+
+        <h2 style="text-align: center; color: rgba(255, 126, 126, 1);">Maaf Produk Yang Anda Cari Belum Tersedia</h2>
+
+        <% } else { %>
+
+        <% dataSearchResult[0].products.forEach((data) => { %>
+
+        <!-- Product -->
+        <div class="pro-card">
+            <a href="/product-details/<%= data._id %>">
+                <!-- image product -->
+                <div class="pro-image">
+                    <img src="https://drive.google.com/uc?export=view&id=<%= data.productpicid[0] %>"
+                        alt="<%= data.namaproduct %>" class="pro-animation">
+                </div>
+
+                <!-- product info -->
+                <div class="des-pro">
+                    <span><i class="fal fa-map-marker-alt"></i> <%= data.kotapenjual %></span>
+                    <h3><%= data.namaproduct %></h3>
+                    <div class="star">
+                        <% for (let x = 0; x < data.rating; x++) { %>
+
+                        <i class="fas fa-star"></i>
+
+                        <% } %>
+                    </div>
+                    <h4><%= data.hargaproduct %></h4>
+                </div>
+            </a>
+
+            <!-- input hidden untk id toko penjual, berat produk, no telp penjual -->
+            <input type="hidden" name="idpenjual" value="<%= data.idpenjual %>">
+            <input type="hidden" name="beratproduct" value="<%= data.beratproduct[0] %>">
+            <input type="hidden" name="notelppenjual" value="<%= data.notelppenjual %>">
+
+            <!-- product button Cart -->
+            <i class="fal fa-shopping-cart btn-cart" data-idproduct="<%= data._id %>"></i>
+        </div>
+
+        <% }) %>
+
+        <% } %>
+
+
+
+    </div>
+
+</section>
+<!-- Product Recommendation Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/api/status.js"></script>
+<script src="/js/api/searchpageapi.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

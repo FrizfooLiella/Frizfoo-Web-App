@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [ Meta Tag SEO ] -->
+    <title>
+        <%= title %>
+    </title>
+    <meta
+        content='infomarsi frozen food, frozen food , makanan beku , makanan cepat saji , beli makanan beku , beli frozen food , sosis , bakso ikan, nugget, siomay, kentang goreng'
+        name='keywords' />
+    <meta
+        content='Selamat datang di Frizfoo, Suatu web application yang dapat menghubungkan pembeli dan penjual dalam satu komunitas, tetapi hanya berfokus pada produk frozen food.'
+        name='description' />
+
+    <!-- CDN for SwiperJS -->
+    <% if (cdnswiperjs) { %>
+
+    <%- cdnswiperjs %>
+
+    <% } %>
+
+    <!-- cari cdnjs font awesome lalu ambil library untuk font-awesome  -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <!-- File Custom Css  -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- File Favicon Frizfoo  -->
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Script Live Chat Frizfoo -->
+    <script id="chatBroEmbedCode">
+        /* Chatbro Widget Embed Code Start */
+        function ChatbroLoader(chats, async) { async = !1 !== async; var params = { embedChatsParameters: chats instanceof Array ? chats : [chats], lang: navigator.language || navigator.userLanguage, needLoadCode: 'undefined' == typeof Chatbro, embedParamsVersion: localStorage.embedParamsVersion, chatbroScriptVersion: localStorage.chatbroScriptVersion }, xhr = new XMLHttpRequest; xhr.withCredentials = !0, xhr.onload = function () { eval(xhr.responseText) }, xhr.onerror = function () { console.error('Chatbro loading error') }, xhr.open('GET', '//www.chatbro.com/embed.js?' + btoa(unescape(encodeURIComponent(JSON.stringify(params)))), async), xhr.send() }
+        /* Chatbro Widget Embed Code End */
+        ChatbroLoader({ encodedChatId: '58fSg' });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- panggil layout navbar di file navbar.ejs -->
+    <%- include('navbar') %>
+
+
+    <!-- panggil isi dari index.ejs -->
+    <%- body %>
+
+
+    <!-- panggil layout footer di file footer.ejs -->
+    <%- include('footer') %>
+
+
+    <!-- Scroll to Top Section -->
+    <div id="progress-scroll">
+        <span id="progress-value"><i class="far fa-hand-point-up"></i></span>
+    </div>
+    <!-- Scroll to Top Section -->
+
+
+
+    <!-- All JS File -->
+    <%- script %>
+</body>
+
+</html>

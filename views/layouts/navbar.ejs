@@ -1,0 +1,126 @@
+<!-- Navbar / Header Section -->
+<header id="header" class="">
+    <div class="maxlgcontainernav">
+
+        <!-- Logo Frizfoo -->
+        <a href="/">
+            <img src="/img/logo.png" class="logo" alt="Logo Frizfoo" width="160" height="50">
+        </a>
+
+        <!-- Navbar List -->
+        <nav class="">
+            <ul id="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <!-- <a href="#" id="close"><i class="far fa-times  fa-spin"></i></a> -->
+            </ul>
+        </nav>
+
+        <!-- Navbar Icon Section-->
+        <div class="icons">
+            <ul id="nav-icon-list">
+                <!-- Untuk Icon Navigasi Mobile -->
+                <button id="menu-btn-mobile" class="fas fa-bars"></button>
+                <!-- Untuk Icon Search -->
+                <button id="search-btn" class="fas fa-search"></button>
+                <!-- Untuk Icon Cart -->
+                <a href="/cart">
+                    <i class="far fa-shopping-bag"></i>
+                    <% if (dataProfile) { %>
+
+                    <div class="frizfoo-cart-number-badge"><%= dataProfile.userCartProducts %></div>
+
+                    <% } else {%>
+
+                    <div class="frizfoo-cart-number-badge">01</div>
+
+                    <% } %>
+                </a>
+                <!-- Untuk Icon Login/Signup -->
+                <button id="signlog-btn" class="fas fa-user"></button>
+            </ul>
+        </div>
+
+        <!-- Navbar Search Section -->
+        <form action="/search" method="get" class="search-form" id="formsearch">
+            <input type="text" name="q" placeholder="Search Product Here..." id="search-inputt" required>
+            <button type="submit" for="search-box" class="fas fa-search" id="search-buttonasli"></button>
+        </form>
+
+
+        <!-- Box Profile User Content -->
+        <% if (dataProfile) { %>
+
+        <div class="boxusercontent pen-userpro-signlog">
+            <div class="pmbungkus-user-content">
+                <!-- Header User Content -->
+                <div class="header-user-content">
+                    <div class="small-profile">
+                        <img src="https://drive.google.com/uc?export=view&id=<%=dataProfile.userPicId%>"
+                            alt="User Profile Image">
+                    </div>
+                    <p>
+                        <%= dataProfile.username %>
+                    </p>
+                </div>
+
+                <!-- User Content List -->
+                <div class="list-user-content">
+                    <a href="/profile/<%= dataProfile.userId %> ">
+                        <i class="fas fa-id-card"></i>
+                        <p>Profile Saya</p>
+                    </a>
+                </div>
+
+                <!-- End User Content -->
+                <div class="footer-user-content">
+                    <a href="/logout">
+                        <i class="fas fa-sign-out"></i>
+                        <p>LogOut</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <% } else {%>
+
+        <!-- Box User Login/Signup -->
+        <div class="boxusersignlog pen-userpro-signlog">
+            <div class="pmbungkus-box-signlog">
+                <!-- Header Box SignLog -->
+                <div class="header-box-signlog">
+                    <div class="small-profile">
+                        <img src="/img/Profil.png" alt="">
+                    </div>
+                    <p>Welcome User</p>
+                </div>
+
+                <!-- Box SignLog List -->
+                <div class="list-box-signlog">
+                    <a href="/login" class="loginbtn normalbtn">
+                        <i class="fas fa-sign-in"></i>
+                        Login
+                    </a>
+
+                    <a href="/register" class="signupbtn normalbtn">
+                        <i class="fas fa-user-plus"></i>
+                        Register
+                    </a>
+                </div>
+
+                <!-- End Box SignLog List -->
+                <div class="footer-box-signlog">
+                    <!-- <i class="fas fa-sign-out"></i> -->
+                    <p>Created with <i class="fas fa-heart"></i> By Liella!</p>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+
+    </div>
+</header>
+<!-- Navbar / Header Section -->
