@@ -10,7 +10,7 @@ const registerValidation = (data) => {  // create a function for register valida
         username: Joi.string().alphanum().required(),
         email: Joi.string().email().required(),
         notelp: Joi.string().required(),
-        password: Joi.string().min(3).max(40).required(),
+        password: Joi.string().min(5).max(30).required(),
         password_confirmation: Joi.ref('password'),  // password_confirmation harus sama dengan password
         gender: Joi.string(),
     });
@@ -24,7 +24,7 @@ const loginValidation = (data) => { // create a function for login validation
 
     const schema = Joi.object({ // create schema object untuk meng validasi
         email: Joi.string().email().required(),
-        password: Joi.string().min(3).max(40).required(),
+        password: Joi.string().min(5).max(30).required(),
     });
 
     return schema.validate(data); // kembalikan hasil validasi data dgm pkai struktur data schema
@@ -76,8 +76,8 @@ const changePassValidation = (data) => { // create a function for change passwor
 
     const schema = Joi.object({  // create schema object untuk meng validasi
         _id: Joi.string(),
-        oldpassword: Joi.string().min(3).max(40).required(),
-        password: Joi.string().min(3).max(40).required(),
+        oldpassword: Joi.string().min(5).max(30).required(),
+        password: Joi.string().min(5).max(30).required(),
         password_confirmation: Joi.ref('password'),  // password_confirmation harus sama dengan password
     });
 
