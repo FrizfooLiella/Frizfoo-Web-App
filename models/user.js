@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({ // buat struktur databasenya / the way our 
     userpicid: {  // field yg di simpan ke collection
         type: String,
         required: true,
-        default: '122TsGrV2aiMBbIKZjtlxI7qRvaxte2GJ',
+        default: '1a07U-OnKg9Uy0VSjaJXERWM1vGrFI0RV',
     },
     fullname: {  // field yg di simpan ke collection
         type: String,

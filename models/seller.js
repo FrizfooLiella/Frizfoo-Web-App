@@ -192,6 +192,21 @@ module.exports = mongoose.model('Seller', sellerSchema); // export modelnya ke f
 
 
 
+// Seller.updateOne( // Query untk tambah sebuah field ke document baru yg sdh ada di dalam collection
+//     {
+//         namatoko: 'Theo Coba Frozen Shop'  // document yg akan di update
+//     },
+//     {
+//         cobaji: 'vehicleSatus'  // field yg akan di tambah dan nilainya, serta pstikan field yg akan di tambah sudah di buat di schema karena WAJIB di buat di schema!
+//     },
+//     { multi: true }, // agar bisa update banyak document sekaligus
+//         function (err, numberAffected) {   // callback
+//         console.log(numberAffected)
+//     });
+
+
+
+
 // Seller.updateOne(   // Query untk push data baru ke array products
 //     {
 //         _id: '62ff412e7d46052b538f590d' // kriteria document yg akan diupdate
