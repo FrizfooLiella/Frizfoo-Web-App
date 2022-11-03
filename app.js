@@ -79,6 +79,9 @@ connectToDb((err) => {
 // Session Middleware
 app.use(session({ // ksh tau express untk pakai middleware session dgn opsi yg dibawah
     secret: 'secret', // secret key untuk enkripsi session id wktu session di buat di sisi server
+    cookie: { // opsi cookie untk setting kapan session di database mongoDB dan cookie client akan terhapus / expired. Klu nd mau expired, maka hapus saja property cookie ini beserta isinya
+        maxAge: 86400000 // maksimal waktu session di database mongoDB dan cookie client tersimpan ialah 1 hari dan setelah itu akan di hapus
+    },
     resave: false, // kalau kita set resave: true, setiap kali client req ke server, kita mau session di save kembali di database/webserver secara berulang tiap kali ada req ke server. Dan jika kita set resave: false artinya untuk setiap kali client req ke server, kita tidak mau session di save kembali di database/webserver secara berulang tiap kali ada req ke server. Dan hanya akan di save kembali jika kita melakukan perubahan data di session.
     saveUninitialized: false, // kalau kita set saveUninitialized: true, maka setiap ada request dari client ke server, maka session akan di buat dan tersave ke database/webserver secara otomatis. Sehingga pastinya server akan mengirim cookies yg isinya sessionID ke client juga. Tapi kalau kita set saveUninitialized: false, maka session tidak akan di buat dan tidak akan tersave ke database/webserver secara otomatis. Sehingga pastinya server tidak akan mengirim cookies yg isinya sessionID ke client juga. Sehingga jika kita mau buat session baru, ya kita hrus buat session baru itu sendiri, dan baru server akan langsung mengirim cookies yg isinya sessionID ke client juga.
     store: store, // kita mau menggunakan store yg sudah dibuat di atas untuk simpan session kedalam database mongoDB
