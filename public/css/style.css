@@ -2892,6 +2892,37 @@ form .button-regis button:hover {
 
 
 
+/*  Product Details Comment Section  */
+
+#comment-disqus-section {
+    max-width: 1200px;
+    margin: 0px auto;
+    margin-top: 30px;
+    background-color: var(--white);
+    border-radius: var(--radius-4);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+#comment-disqus-section .judul-comment {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #ececec;
+    padding: 9px 15px;
+    color: var(--greywritting);
+    font-size: 1.6rem;
+}
+
+#comment-disqus-section .cmt {
+    padding: 15px;
+}
+
+
+
+
+
 /* Cart Checkout Section */
 
 #breadcumb-header-section.cartcheckout-header {
@@ -4475,6 +4506,15 @@ div#pesan-error li {
     /* Responsive for Product Detail Section */
     #product-details-section {
         padding: 10px;
+    }
+
+    /* Responsive for Product Detail Comment Section */
+    #comment-disqus-section .judul-comment {
+        padding: 9px 10px;
+    }
+
+    #comment-disqus-section .cmt {
+        padding: 15px 10px;
     }
 
     /* Responsive For Cart & Checkout Section */
