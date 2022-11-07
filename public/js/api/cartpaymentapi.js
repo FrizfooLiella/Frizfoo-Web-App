@@ -136,7 +136,7 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
                 let name = data.querySelector('.product-name').innerText;
                 let price = data.querySelector('#price').innerText.replace(/[^\w\s]/gi, '');
                 let qty = data.querySelector('#quantity').innerText;
-                let urlproduct = `${idproduct}`;
+                let urlproduct = `https://frizfoo.com/product-details/${idproduct}`;
                 descriptionInvoice += `${qty} ${name} dan `;
 
                 itemsInCart.push({  // Masukkan object ke array itemsInCart
