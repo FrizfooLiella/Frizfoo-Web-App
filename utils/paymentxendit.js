@@ -23,7 +23,7 @@ async function buatInvoice(dataUser, dataInvoiceItem) { // function untuk membua
             payerEmail: dataUser.email,
             should_send_email: true,
             description: dataInvoiceItem.descriptionInvoice,
-            invoice_duration: 60,
+            invoiceDuration: 86400, // untk atur brp lama invoice bisa dibayar, dalam satuan detik. 86400 = 1 hari / 24 jam
             customer: {
                 given_names: dataUser.fullname,
                 surname: dataUser.username,
