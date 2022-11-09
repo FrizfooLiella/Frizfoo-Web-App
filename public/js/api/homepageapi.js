@@ -126,7 +126,7 @@ function productFrags(m) {   // Function yang berisi html fragment untuk setiap 
             <a href="/product-details/${m._id}">
                 <!-- image product -->
                 <div class="pro-image">
-                    <img src="https://drive.google.com/uc?export=view&id=${m.productpicid[0]}" alt="${m.namaproduct}" class="pro-animation">
+                    <img src="https://drive.google.com/uc?export=view&id=${m.productpicid[0]}" alt="${m.namaproduct}" class="pro-animation" loading="lazy">
                 </div>
 
                 <!-- product info -->
