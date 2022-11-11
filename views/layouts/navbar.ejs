@@ -4,7 +4,7 @@
 
         <!-- Logo Frizfoo -->
         <a href="/">
-            <img src="/img/logo.png" class="logo" alt="Logo Frizfoo" width="160" height="50">
+            <img src="/img/logo.webp" class="logo" alt="Logo Frizfoo" width="160" height="50">
         </a>
 
         <!-- Navbar List -->
@@ -22,9 +22,9 @@
         <div class="icons">
             <ul id="nav-icon-list">
                 <!-- Untuk Icon Navigasi Mobile -->
-                <button id="menu-btn-mobile" class="fas fa-bars"></button>
+                <button id="menu-btn-mobile" class="fas fa-bars" aria-label="mobileNavigation"></button>
                 <!-- Untuk Icon Search -->
-                <button id="search-btn" class="fas fa-search"></button>
+                <button id="search-btn" class="fas fa-search" aria-label="searchToggle"></button>
                 <!-- Untuk Icon Cart -->
                 <a href="/cart">
                     <i class="far fa-shopping-bag"></i>
@@ -39,14 +39,15 @@
                     <% } %>
                 </a>
                 <!-- Untuk Icon Login/Signup -->
-                <button id="signlog-btn" class="fas fa-user"></button>
+                <button id="signlog-btn" class="fas fa-user" aria-label="signlogToggle"></button>
             </ul>
         </div>
 
         <!-- Navbar Search Section -->
         <form action="/search" method="get" class="search-form" id="formsearch">
             <input type="text" name="q" placeholder="Search Product Here..." id="search-inputt" required>
-            <button type="submit" for="search-box" class="fas fa-search" id="search-buttonasli"></button>
+            <button type="submit" for="search-box" class="fas fa-search" id="search-buttonasli"
+                aria-label="searchButton"></button>
         </form>
 
 
@@ -92,7 +93,7 @@
                 <!-- Header Box SignLog -->
                 <div class="header-box-signlog">
                     <div class="small-profile">
-                        <img src="/img/Profil.png" alt="">
+                        <img src="/img/Profil.webp" alt="Profile Picture">
                     </div>
                     <p>Welcome User</p>
                 </div>
