@@ -148,17 +148,20 @@ document.addEventListener('click', async function (e) { // function untk klu but
 
         if (e.target.classList.contains('btn-delete-cart')) { // Kita cek apakah yang diklik adalah tombol kurang
 
+            e.target.classList.add('btn-pauseload'); // Tambah effect btn spya tidak bisa di klik
+            e.target.classList.add('fa-spin'); // Tambah effect loading spin
+
+
             // Ambil semua data Product yg mau di add to cart
             idproduct = e.target.dataset.idproduct;
             // Ambil semua data Product yg mau di add to cart
 
 
-            e.target.classList.add('fa-spin'); // Tambah effect loading spin
-
-
             window.location.href = await delToCart(); // panggil function delToCart untk hapus item dari cart user dan refresh page
 
-            e.target.classList.remove('fa-spin'); // Hapus effect loading spin
+
+            // e.target.classList.remove('btn-pauseload'); // Hapus effect btn spya tidak bisa di klik
+            // e.target.classList.remove('fa-spin'); // Hapus effect loading spin
 
         }
 
@@ -362,8 +365,8 @@ function itemFrags(m) {
             </div>
 
             <!-- Button Hapus Item -->
-            <button class="product-close-btn btn-delete-cart" data-idproduct="${m.idproduct}">
-                <i class="far fa-times btn-delete-cart" data-idproduct="${m.idproduct}"></i>
+            <button class="product-close-btn btn-delete-cart far fa-times" data-idproduct="${m.idproduct}">
+                <!-- <i class="far fa-times btn-delete-cart" data-idproduct="${m.idproduct}"></i> -->
             </button>
 
             <!-- Input Hidden -->

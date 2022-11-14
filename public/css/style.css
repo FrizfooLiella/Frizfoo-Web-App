@@ -209,6 +209,10 @@ body {
 
 /* Reused CSS Style */
 
+.btn-pauseload {
+    pointer-events: none;
+}
+
 .reveal {
     position: relative;
     transform: translateY(150px);
@@ -3277,7 +3281,7 @@ form .button-regis button:hover {
 }
 
 .detail .wrapper .product-qty button:active,
-.product-card .product-close-btn:active i {
+.product-card .product-close-btn:active {
     transform: scale(0.95);
 }
 
@@ -3289,14 +3293,11 @@ form .button-regis button:hover {
     outline: none;
     background-color: var(--white);
     transition: var(--transition-3);
-}
-
-.product-card .product-close-btn i {
     font-size: 2.5rem;
     color: var(--quick-silver);
 }
 
-.product-card .product-close-btn:hover i {
+.product-card .product-close-btn:hover {
     transition: var(--transition-3);
     color: var(--redpastel);
 }
