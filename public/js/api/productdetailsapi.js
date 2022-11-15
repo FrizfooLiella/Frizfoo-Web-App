@@ -38,11 +38,16 @@ btnAddToCart.addEventListener('click', async function (e) { // klu btnAddToCart 
             return alert('Pilih Berat Produk Terlebih Dahulu');
         }
 
+
+        btnAddToCart.classList.add('btn-pauseload'); // Tambah effect btn spya tidak bisa di klik lagi
         btnAddToCart.innerHTML = `<i class="fas fa-sync-alt fa-spin"></i> Process.. <i class="fas fa-sync-alt fa-spin"></i>`; // kita ubah text button menjadi Please Wait
+
 
         window.location.href = await addToCart(); // klu user sdh login, maka akan tidak akan diarahkan ke halaman login
 
-        btnAddToCart.innerHTML = `Add To Cart`; // kita ubah text button menjadi add to cart kembali
+
+        // btnAddToCart.classList.remove('btn-pauseload'); // Hapus effect btn spya bisa di klik lagi
+        // btnAddToCart.innerHTML = `Add To Cart`; // kita ubah text button menjadi add to cart kembali
 
     } catch (error) {  // klu gagal, maka...
 

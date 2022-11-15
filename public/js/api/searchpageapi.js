@@ -9,6 +9,10 @@ document.addEventListener("click", async function (e) {  // Event listener untuk
 
         if (e.target.classList.contains('btn-cart')) {
 
+            e.target.classList.add('btn-pauseload'); // Tambah effect btn spya tidak bisa di klik lagi
+            e.target.classList.add('fa-spinner', 'fa-spin'); // kita tambahkan class spinner dan spin
+
+
             // Ambil semua data Product yg mau di add to cart
             idproduct = e.target.dataset.idproduct;
             productpic = e.target.parentElement.querySelector('a .pro-image img').src;
@@ -22,11 +26,11 @@ document.addEventListener("click", async function (e) {  // Event listener untuk
             // Ambil semua data Product yg mau di add to cart
 
 
-            e.target.classList.add('fa-spinner', 'fa-spin'); // kita tambahkan class spinner dan spin
-
             window.location.href = await addToCart(); // klu user sdh login, maka akan tidak akan diarahkan ke halaman login
 
-            e.target.classList.remove('fa-spinner', 'fa-spin'); // kita hapus class spinner dan spin
+
+            // e.target.classList.remove('btn-pauseload'); // Hapus effect btn spya bisa di klik lagi
+            // e.target.classList.remove('fa-spinner', 'fa-spin'); // kita hapus class spinner dan spin
 
         }
 
