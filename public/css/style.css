@@ -3780,6 +3780,7 @@ form .button-regis button:hover {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     transition: var(--transition-3);
+    line-height: 1.3;
 }
 
 .container-fototoko-keterangantoko .shop-sellercentre-dashboard-content-text .keterangantoko {
