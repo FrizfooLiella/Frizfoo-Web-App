@@ -1,0 +1,166 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section addnewproduct-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Update Data Product</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/seller/update-seller-product/" class="breadcumb-item">Update Data Product</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Update Data Product Section -->
+<section class="update-product-section reveal" id="update-data-product-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+    <% if (!alldataProductDetail) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data Product Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-update-product">
+
+        <!-- Judul Form Add New Product -->
+        <div class="title-update-product">Update Information Product</div>
+
+        <!-- Form Add New Product -->
+        <div class="contentupdatedataproductform">
+            <form action="/seller/update-seller-product/<%= alldataProductDetail._id %>?_method=PUT" method="post"
+                id="form-update-data-product">
+
+                <!-- Input Informasi Produk -->
+                <div class="form-update-data-product-details">
+
+                    <!-- Input Hidden ID productnya -->
+                    <input type="hidden" name="_id" value="<%= alldataProductDetail._id %>">
+
+                    <!-- Input Hidden ID Tokonya -->
+                    <input type="hidden" name="idpenjual" value="<%= alldataProductDetail.idpenjual %>">
+
+                    <!-- Input Kota Toko Penjual -->
+                    <input type="hidden" name="kotapenjual" value="<%= alldataProductDetail.kotapenjual %>">
+
+                    <!-- Input No.Telp Toko Penjual -->
+                    <input type="hidden" name="notelppenjual" value="<%= alldataProductDetail.notelppenjual %>">
+
+                    <!-- Informasi Toko Penjual Product -->
+                    <div class="input-box-profile">
+                        <label for="penjual" class="details">Toko Penjual *</label>
+                        <input id="penjual" type="text" name="penjual" placeholder="Masukkan Nama Toko Penjual"
+                            value="<%= alldataProductDetail.penjual %>" readonly required>
+                    </div>
+
+                    <!-- Input Nama Produk -->
+                    <div class="input-box-profile">
+                        <label for="namaproduct" class="details">Nama Product *</label>
+                        <input id="namaproduct" type="text" name="namaproduct" placeholder="Masukkan Nama Product"
+                            value="<%= alldataProductDetail.namaproduct %>" autofocus required>
+                    </div>
+
+                    <!-- Input Merek Produk -->
+                    <div class="input-box-profile">
+                        <label for="merekproduct" class="details">Merek Product *</label>
+                        <input id="merekproduct" type="text" name="merekproduct" placeholder="Cth: Fiesta"
+                            value="<%= alldataProductDetail.merekproduct %>" required>
+                    </div>
+
+                    <!-- Input Rating Produk -->
+                    <div class="input-box-profile">
+                        <label for="rating" class="details">Rating Product *</label>
+                        <input id="rating" type="number" name="rating" placeholder="Nilai 1 - 5" min="1" max="5"
+                            value="<%= alldataProductDetail.rating %>" required>
+                    </div>
+
+                    <!-- Input Harga Produk -->
+                    <div class="input-box-profile">
+                        <label for="hargaproduct" class="details">Harga Product *</label>
+                        <input id="hargaproduct" type="text" name="hargaproduct" placeholder="Cth: 48.000"
+                            value="<%= alldataProductDetail.hargaproduct %>" required>
+                    </div>
+
+                    <!-- Input Berat Produk -->
+                    <div class="input-box-profile">
+                        <label for="beratproduct" class="details">Berat Product *</label>
+                        <input id="beratproduct" type="text" name="beratproduct" placeholder="Cth: 500 gr"
+                            value="<%= typeof(alldataProductDetail.beratproduct) == 'object' ? alldataProductDetail.beratproduct[0] : alldataProductDetail.beratproduct %>"
+                            required>
+                    </div>
+
+                    <!-- Input Stock Produk -->
+                    <div class="input-box-profile">
+                        <label for="stokproduct" class="details">Stok Product *</label>
+                        <input id="stokproduct" type="text" name="stokproduct"
+                            placeholder="Tersedia Selalu / Jmlh Product" value="<%= alldataProductDetail.stokproduct %>"
+                            required>
+                    </div>
+
+                    <!-- Input Massa Simpan Product -->
+                    <div class="input-box-profile">
+                        <label for="masasimpanproduct" class="details">Masa Penyimpanan *</label>
+                        <input id="masasimpanproduct" type="text" name="masasimpanproduct"
+                            placeholder="Cth: 1 Tahun / 6 Bulan" value="<%= alldataProductDetail.masasimpanproduct %>"
+                            required>
+                    </div>
+
+                    <!-- Input Deskripsi Product -->
+                    <div class="input-box-desproduct">
+                        <label for="deskripsiproduct" class="details">Deskripsi Product *</label>
+                        <textarea id="deskripsiproduct" type="text" name="deskripsiproduct"
+                            placeholder="Masukkan Deskripsi Product Anda" rows="8"
+                            required><%= alldataProductDetail.deskripsiproduct %></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Button Cancel dan Submit Update Product -->
+                <div class="button-updateproduct">
+                    <!-- Button Cancel -->
+                    <a href="/seller/profile-shop/<%= alldataProductDetail.idpenjual %>"
+                        class="btn-cancel-updateproduct">Cancel</a>
+
+                    <!-- Button Daftar Toko -->
+                    <button type="submit" class="btn-update-product">Update Product</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Update Data Product Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

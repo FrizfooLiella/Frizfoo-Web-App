@@ -81,7 +81,8 @@ const sellerSchema = mongoose.Schema({ // buat struktur databasenya / the way ou
     },
     sellerpicid: {  // field yg di simpan ke collection
         type: String,
-        default: '',
+        required: true,
+        default: '1b9uFHq3SR2Zyv6NvmEed4RlaI7uHt_tF',
     },
     namatoko: {  // field yg di simpan ke collection
         type: String,

@@ -54,7 +54,7 @@
             <div class="edit-pic-profile">
                 <form action="/profile/<%= alldataUserProfile._id %>" method="post" enctype="multipart/form-data"
                     id="form-upload-img-profile">
-                    <input type="file" name="profileImg" onchange="javascript:this.form.submit();">
+                    <input type="file" name="profileImg" accept="image/*" onchange="javascript:this.form.submit();">
                     <i class="fas fa-camera"></i>
                 </form>
             </div>
@@ -133,7 +133,16 @@
             <a href="/change-password/<%= alldataUserProfile._id %>" class="btn-chg-pass">Change Password</a>
 
             <!-- Button Daftar Toko Seller -->
-            <!-- <a href="" class="btn-regis-shop">Daftar Toko</a> -->
+            <% if (!alldataUserProfile.idtokouser) { %>
+
+            <a href="/seller/register-shop/<%= alldataUserProfile._id %>" class="btn-regis-shop">Daftar Toko</a>
+
+            <% } else {%>
+
+            <a href="/seller/profile-shop/<%= alldataUserProfile.idtokouser %>" class="btn-regis-shop">Dashboard
+                Toko</a>
+
+            <% } %>
 
         </div>
 

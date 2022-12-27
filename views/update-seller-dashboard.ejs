@@ -1,0 +1,149 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section sellercentre-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Seller Dashboard</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="#" class="breadcumb-item">Edit Seller Dashboard</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Edit Seller Dashboard Section -->
+<section class="edit-seller-section reveal" id="edit-seller-dashboard-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+    <% if (!alldataSellerProfile) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data Seller Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-edit-seller">
+
+        <!-- Judul Edit Seller Dashboard -->
+        <div class="title-edit-seller">Update Seller Dashboard</div>
+
+        <!-- Form Edit Data Seller Dashboard -->
+        <div class="contenteditsellerdashboardform">
+            <form action="/seller/update-seller-dashboard/<%= alldataSellerProfile._id %>?_method=PUT" method="post"
+                id="form-edit-seller-dashboard">
+
+                <!-- Form Edit Seller Dashboard Details -->
+                <div class="form-edit-seller-dashboard-details">
+
+                    <!-- Input Hidden ID Tokonya -->
+                    <input type="hidden" name="_id" value="<%= alldataSellerProfile._id %>">
+
+                    <!-- Input Hidden ID User Pemilik Tokonya -->
+                    <input type="hidden" name="idpemiliktoko" value="<%= alldataSellerProfile.idpemiliktoko %>">
+
+                    <!-- Nama toko input -->
+                    <div class="input-box-profile">
+                        <label for="namatoko" class="details">Nama Toko *</label>
+                        <input id="namatoko" type="text" name="namatoko" placeholder="Masukkan Nama Toko"
+                            value="<%= alldataSellerProfile.namatoko %>" autofocus required>
+                    </div>
+
+                    <!-- Alamat toko input -->
+                    <div class="input-box-profile">
+                        <label for="address" class="details">Alamat Toko *</label>
+                        <input id="address" type="text" name="alamat" placeholder="Masukkan Alamat Toko"
+                            value="<%= alldataSellerProfile.alamat %>" required>
+                    </div>
+
+                    <!-- Email pemilik input -->
+                    <div class="input-box-profile">
+                        <label for="Email" class="details">Email *</label>
+                        <input id="Email" type="email" name="email" placeholder="Enter your email"
+                            value="<%= alldataSellerProfile.email %>" readonly required>
+                    </div>
+
+                    <!-- No. Telp pemilik input -->
+                    <div class="input-box-profile">
+                        <label for="notelp" class="details">Nomor Telepon *</label>
+                        <input id="notelp" type="tel" name="notelp" placeholder="Enter your number"
+                            value="<%= alldataSellerProfile.notelp %>" required>
+                    </div>
+
+                    <!-- Kota input -->
+                    <div class="input-box-profile">
+                        <label for="city" class="details">Kota *</label>
+                        <input id="city" type="text" name="kota" placeholder="Enter your City"
+                            value="<%= alldataSellerProfile.kota %>" required>
+                    </div>
+
+                    <!-- Kecamatan input -->
+                    <div class="input-box-profile">
+                        <label for="districts" class="details">Kecamatan *</label>
+                        <input id="districts" type="text" name="kecamatan" placeholder="Enter your Districts"
+                            value="<%= alldataSellerProfile.kecamatan %>" required>
+                    </div>
+
+                    <!-- Provinsi input -->
+                    <div class="input-box-profile">
+                        <label for="province" class="details">Provinsi *</label>
+                        <input id="province" type="text" name="provinsi" placeholder="Enter your Province"
+                            value="<%= alldataSellerProfile.provinsi %>" required>
+                    </div>
+
+                    <!-- Kode Pos input -->
+                    <div class="input-box-profile">
+                        <label for="postalcode" class="details">Kode Pos *</label>
+                        <input id="postalcode" type="text" name="kodepos" placeholder="Enter your Postal Code"
+                            pattern="^([1-9])[0-9]{4}$" value="<%= alldataSellerProfile.kodepos %>" required>
+                    </div>
+
+                </div>
+
+                <!-- Button Cancel dan Submit perubahan data seller -->
+                <div class="button-upsellerdashboard">
+                    <!-- Button Cancel -->
+                    <a href="/seller/profile-shop/<%= alldataSellerProfile._id %>"
+                        class="btn-cancel-update-seller-dashboard">Cancel</a>
+
+                    <!-- Button Update Data Seller Dashboard -->
+                    <button type="submit" class="btn-update-seller-dashbpard">Update Dashboard</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Edit Seller Dashboard Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

@@ -183,6 +183,42 @@ app.delete('/api/v1/del-invoice/:idInvoice', isAuth, appcontroller.del_invoice_a
 
 
 
+// Route untk Register Seller Shop Page
+app.get('/seller/register-shop/:idUser', isAuth, appcontroller.register_shop_page); // klu ada Req ke '/seller/register-shop/:idUser', jlnkan function midleware appcontroller.register_shop_page
+app.post('/seller/register-shop/:idUser', isAuth, appcontroller.register_shop_page_post); // klu ada Req POST ke '/seller/register-shop/:idUser', jlnkan function midleware appcontroller.register_shop_page_post
+
+
+
+// Route untk Dashboard Seller Page
+app.get('/seller/profile-shop/:idSeller', isAuth, appcontroller.profile_shop_page); // klu ada Req ke '/seller/profile-shop/:idSelle', jlnkan function midleware appcontroller.profile_shop_page
+app.post('/seller/profile-shop/:idSeller', isAuth, appcontroller.profile_shop_page_post); // klu ada Req POST ke '/seller/profile-shop/:idSeller', jlnkan function midleware appcontroller.profile_shop_page_post
+
+
+
+// Route untk Add New Product Page
+app.get('/seller/add-new-product/:idSeller', isAuth, appcontroller.add_new_product_page); // klu ada Req ke '/seller/add-new-product/:idSeller', jlnkan function midleware appcontroller.add_new_product_page
+app.post('/seller/add-new-product/:idSeller', isAuth, appcontroller.add_new_product_page_post); // klu ada Req POST ke '/seller/add-new-product/:idSeller', jlnkan function midleware appcontroller.add_new_product_page_post
+
+
+
+// Route untk Update Dashboard Seller Page
+app.get('/seller/update-seller-dashboard/:idSeller', isAuth, appcontroller.update_seller_dashboard_page); // klu ada Req ke '/seller/update-seller-dashboard/:idSeller', jlnkan function midleware appcontroller.update_seller_dashboard_page
+app.put('/seller/update-seller-dashboard/:idSeller', isAuth, appcontroller.update_seller_dashboard_page_put); // klu ada Req PUT ke '/seller/update-seller-dashboard/:idSeller', jlnkan function midleware appcontroller.update_seller_dashboard_page_put
+
+
+
+// Route API untk ambil, hapus, update semua data product seller
+app.get('/api/v1/seller/seller-product', isAuth, appcontroller.seller_product_api); // klu ada Req ke '/api/v1/seller/seller-product?page=0&urutkan=1', jlnkan function midleware appcontroller.seller_product_api
+app.delete('/api/v1/seller/del-seller-product/:idProduct', isAuth, appcontroller.del_seller_product_api); // klu ada Req DELETE ke '/api/v1/seller/del-seller-product/:idProduct', jlnkan function midleware appcontroller.del_seller_product_api
+
+
+
+// Route untk Update Data Product Seller 
+app.get('/seller/update-seller-product/:idProduct', isAuth, appcontroller.update_seller_product_page); // klu ada Req ke '/seller/update-seller-product/:idProduct', jlnkan function midleware appcontroller.update_seller_product_page
+app.put('/seller/update-seller-product/:idProduct', isAuth, appcontroller.update_seller_product_page_put); // klu ada Req PUT ke '/seller/update-seller-product/:idProduct', jlnkan function midleware appcontroller.update_seller_product_page_put
+
+
+
 // Route untk Search Page
 app.get('/search', appcontroller.search_page); // klu ada Req ke '/search', jlnkan function midleware appcontroller.search_page'
 

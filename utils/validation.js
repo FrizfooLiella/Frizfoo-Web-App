@@ -86,6 +86,94 @@ const changePassValidation = (data) => { // create a function for change passwor
 }
 
 
+// REGISTER SHOP VALIDATION
+const registerShopValidation = (data) => { // create a function for Register Shop validation
+
+    const schema = Joi.object({  // create schema object untuk meng validasi
+        idpemiliktoko: Joi.string().required(),
+        namatoko: Joi.string().min(5).required(),
+        alamat: Joi.string().required(),
+        kota: Joi.string().required(),
+        kecamatan: Joi.string().required(),
+        provinsi: Joi.string().required(),
+        kodepos: Joi.string().min(5).max(5).required(),
+        email: Joi.string().email().required(),
+        notelp: Joi.string().required(),
+    });
+
+    return schema.validate(data); // return data yg validasi untuk di proses di file lainnya
+
+}
+
+
+// ADD NEW PRODUCT VALIDATION
+const addNewProductValidation = (data) => { // create a function for Add New Product validation
+
+    const schema = Joi.object({  // create schema object untuk meng validasi
+        idpenjual: Joi.string().required(),
+        kotapenjual: Joi.string().required(),
+        notelppenjual: Joi.string().required(),
+        penjual: Joi.string().min(5).required(),
+        namaproduct: Joi.string().min(5).required(),
+        merekproduct: Joi.string().required(),
+        rating: Joi.number().min(1).max(5).required(),
+        hargaproduct: Joi.string().required(),
+        beratproduct: Joi.string().required(),
+        stokproduct: Joi.string().required(),
+        masasimpanproduct: Joi.string().required(),
+        deskripsiproduct: Joi.string().required(),
+    });
+
+    return schema.validate(data); // return data yg validasi untuk di proses di file lainnya
+
+}
+
+
+// UPDATE SELLER DASHBOARD VALIDATION
+const updateSellerDashboardValidation = (data) => { // create a function for Update Seller Dashboard validation
+
+    const schema = Joi.object({  // create schema object untuk meng validasi
+        _id: Joi.string(),
+        idpemiliktoko: Joi.string().required(),
+        namatoko: Joi.string().min(5).required(),
+        alamat: Joi.string().required(),
+        kota: Joi.string().required(),
+        kecamatan: Joi.string().required(),
+        provinsi: Joi.string().required(),
+        kodepos: Joi.string().min(5).max(5).required(),
+        email: Joi.string().email().required(),
+        notelp: Joi.string().required(),
+    });
+
+    return schema.validate(data); // return data yg validasi untuk di proses di file lainnya
+
+}
+
+
+// UPDATE SELLER PRODUCT VALIDATION
+const updateSellerProductValidation = (data) => { // create a function for Update Seller Product validation
+
+    const schema = Joi.object({  // create schema object untuk meng validasi
+        _id: Joi.string(),
+        idpenjual: Joi.string(),
+        kotapenjual: Joi.string().required(),
+        notelppenjual: Joi.string().required(),
+        penjual: Joi.string().min(5).required(),
+        namaproduct: Joi.string().min(5).required(),
+        merekproduct: Joi.string().required(),
+        rating: Joi.number().min(1).max(5).required(),
+        hargaproduct: Joi.string().required(),
+        beratproduct: Joi.string().required(),
+        stokproduct: Joi.string().required(),
+        masasimpanproduct: Joi.string().required(),
+        deskripsiproduct: Joi.string().required(),
+    });
+
+    return schema.validate(data); // return data yg validasi untuk di proses di file lainnya
+
+}
+
+
 
 
 module.exports = { // export module agar bisa di pakai di file lain
@@ -94,5 +182,9 @@ module.exports = { // export module agar bisa di pakai di file lain
     sendEmailForgotPassValidation: sendEmailForgotPassValidation,
     regexMongoDbId: regexMongoDbId,
     updateProfileValidation: updateProfileValidation,
-    changePassValidation: changePassValidation
+    changePassValidation: changePassValidation,
+    registerShopValidation: registerShopValidation,
+    addNewProductValidation: addNewProductValidation,
+    updateSellerDashboardValidation: updateSellerDashboardValidation,
+    updateSellerProductValidation: updateSellerProductValidation
 }

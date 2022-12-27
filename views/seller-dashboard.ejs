@@ -1,0 +1,184 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section sellercentre-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Seller Dashboard</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/seller/profile-shop/" class="breadcumb-item">Seller Dashboard</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Seller Centre Dashboard Section -->
+<section class="sellercentre-section reveal" id="sellercentre-dashboard-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+
+    <% if (!alldataSellerProfile) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data Seller Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-sellercentre-dashboard">
+
+        <!-- Judul Seller Centre Dashboard Section -->
+        <h1 class="heading-sellercentre-dashboard">
+            <i class="far fa-user-cog"></i> <%= alldataSellerProfile.namatoko %> Dashboard
+        </h1>
+
+        <!-- Seller Shop Dashboard Section -->
+        <div class="shop-sellercentre-dashboard">
+
+            <!-- Bagian Nama, Foto Toko dan Keterangan Toko-->
+            <div class="shop-sellercentre-dashboard-content">
+
+                <!-- Container untk Foto Toko dan Nama, keterangan Toko -->
+                <div class="container-fototoko-keterangantoko">
+
+                    <!-- Bagian Foto Toko -->
+                    <div class="shop-sellercentre-dashboard-content-img">
+                        <img src="https://drive.google.com/uc?export=view&id=<%= alldataSellerProfile.sellerpicid %>"
+                            alt="Gambar Profile Toko Seller">
+
+                        <!-- Tombol Edit Foto Toko -->
+                        <div class="edit-pic-profiletokoseller">
+                            <form action="/seller/profile-shop/<%= alldataSellerProfile._id %>" method="post"
+                                enctype="multipart/form-data" id="form-upload-img-profiletokoseller">
+                                <input type="file" name="sellerpicid" accept="image/*"
+                                    onchange="javascript:this.form.submit();">
+                                <i class="fas fa-camera"></i>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Nama Toko dan Keterangan Toko -->
+                    <div class="shop-sellercentre-dashboard-content-text">
+                        <!-- Nama Toko -->
+                        <h1 class="judulnamatoko"><%= alldataSellerProfile.namatoko %></h1>
+                        <!-- Keterangan Toko -->
+                        <div class="keterangantoko">
+                            <p><i class="far fa-utensils-alt"></i> <%= alldataSellerProfile.products.length %> Products
+                            </p>
+                            <p><i class="far fa-map-marker-alt"></i> <%= alldataSellerProfile.kota %></p>
+                            <p><i class="far fa-location"></i> <%= alldataSellerProfile.alamat %></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bagian Tombol Tambah Produk dan Edit Data -->
+                <div class="shop-sellercentre-dashboard-content-feature">
+                    <a href="/seller/add-new-product/<%= alldataSellerProfile._id %>" class="addproductbtn">
+                        <i class="fas fa-plus"></i>
+                        Tambah Produk
+                    </a>
+                    <a href="/seller/update-seller-dashboard/<%= alldataSellerProfile._id %>" class="editshopbtn">
+                        <i class="fas fa-edit"></i>
+                        Edit Data Toko
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Seller Centre Dashboard Section -->
+
+
+<!-- Filter Product Section -->
+<section class="filterproduct-section reveal" id="filter-product-section">
+    <div class="container-filter-product">
+
+        <!-- Judul Filter Product Section -->
+        <h3 class="judul-filter-product">
+            <i class="far fa-filter"></i> Urutkan Produk Anda
+        </h3>
+
+        <!-- Dropdown Filter Product Section -->
+        <div class="container-btn-filter-product">
+
+            <!-- Button 1 Dropdown Filter Product -->
+            <div class="dropdown-btn">
+
+                <!-- Selected Filter -->
+                <div class="select-filter">
+                    <span class="selected-filter">Produk Terbaru</span>
+                    <div class="caret"></div>
+                </div>
+
+                <!-- List Filter Product -->
+                <ul class="menu-filter">
+                    <li class="active-selected">Produk Terbaru</li>
+                    <li>Produk Terlama</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- Filter Product Section -->
+
+
+<!-- Product Recommendation Section -->
+<section class="product-section reveal mt-seller-product" id="product-recom-section">
+
+    <!-- Product Recommendation List -->
+    <div class="pro-container">
+
+        <!-- Isi Dari Hasil Fetch -->
+
+    </div>
+
+    <!-- Button Load More Product -->
+    <div class="btn-load-more">
+        <button class="btnload btnloadfect" id="btn-loadmore-product">
+            <i class="fas fa-sync-alt"></i>
+            &ensp; Load More &ensp;
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+
+</section>
+<!-- Product Recommendation Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/api/status.js"></script>
+<script src="/js/api/sellerdashboardapi.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>

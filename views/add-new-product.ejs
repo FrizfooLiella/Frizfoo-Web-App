@@ -1,0 +1,191 @@
+<!-- Page Header/Breadcumb Section -->
+<section class="breadcumb-section addnewproduct-header" id="breadcumb-header-section">
+    <!-- Judul Breadcumb -->
+    <h2 class="page-title">Add New Product</h2>
+
+    <!-- List Breadcumb -->
+    <ol class="breadcumb-list">
+        <li class="breadcumb-item">
+            <a href="/" class="breadcumb-link">Home</a>
+        </li>
+
+        <li class="breadcumb-item">
+            <a href="/seller/add-new-product/" class="breadcumb-item">Add New Product</a>
+        </li>
+    </ol>
+
+</section>
+<!-- Page Header/Breadcumb Section -->
+
+
+<!-- Add New Product Section -->
+<section class="add-product-section reveal" id="add-new-product-section">
+
+    <% if(flshMsg) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>
+                <%= flshMsg %>
+            </li>
+        </ul>
+    </div>
+
+    <% } %>
+
+    <% if (!alldataSellerProfile) { %>
+
+    <div id="pesan-error">
+        <ul>
+            <li>Data Seller Tidak di Temukan</li>
+        </ul>
+    </div>
+
+    <% } else {%>
+
+    <div class="container-add-product">
+
+        <!-- Judul Form Add New Product -->
+        <div class="title-add-product">Information Product</div>
+
+        <!-- Form Add New Product -->
+        <div class="contentaddproductform">
+            <form action="/seller/add-new-product/<%= alldataSellerProfile._id %>" method="post"
+                id="form-add-new-product" enctype="multipart/form-data">
+
+                <!-- Input Foto Produk -->
+                <div class="container-upphoto">
+                    <!-- Bagian Judul Upload Foto -->
+                    <div class="judul-upphoto">
+                        <p>Drag & Drop Image Uploading</p>
+                        <!-- <button type="button" class="btn-upphoto">Upload</button> -->
+                    </div>
+
+                    <!-- Bagian Input Foto / Drag & Drop Foto -->
+                    <div class="drag-area">
+                        <span class="visible">
+                            Drag & drop image here or
+                            <span class="select-img" role="button">Browse</span>
+                        </span>
+                        <span class="on-drop">Drop images here</span>
+                        <input name="picproducts" type="file" class="file" accept="image/*" multiple />
+                    </div>
+
+                    <!-- IMAGE PREVIEW CONTAINER -->
+                    <div class="container-img-preview">
+                        <!-- Isinya dari preview foto -->
+                    </div>
+                </div>
+
+                <!-- Keterangan Syarat Foto Produk yg diupload -->
+                <div class="keterangan-upphoto">
+                    <p>Keterangan : </p>
+                    <ul>
+                        <li>Harap Mengupload Minimal 4 Gambar Untk 1 Produk.</li>
+                        <li>Gambar Harus Berukuran Minimal 600x600px.</li>
+                        <li>Gambar Yang di Upload WAJIB Berukuran Kotak.</li>
+                    </ul>
+                </div>
+
+                <!-- Input Informasi Produk -->
+                <div class="form-add-product-details">
+
+                    <!-- Input Hidden UserID -->
+                    <input type="hidden" name="idpenjual" value="<%= alldataSellerProfile._id %>">
+
+                    <!-- Input Kota Toko Penjual -->
+                    <input type="hidden" name="kotapenjual" value="<%= alldataSellerProfile.kota%>">
+
+                    <!-- Input No.Telp Toko Penjual -->
+                    <input type="hidden" name="notelppenjual" value="<%= alldataSellerProfile.notelp %>">
+
+                    <!-- Informasi Toko Penjual Product -->
+                    <div class="input-box-profile">
+                        <label for="penjual" class="details">Toko Penjual *</label>
+                        <input id="penjual" type="text" name="penjual" placeholder="Masukkan Nama Toko Penjual"
+                            value="<%= alldataSellerProfile.namatoko %>" readonly required>
+                    </div>
+
+                    <!-- Input Nama Produk -->
+                    <div class="input-box-profile">
+                        <label for="namaproduct" class="details">Nama Product *</label>
+                        <input id="namaproduct" type="text" name="namaproduct" placeholder="Masukkan Nama Product"
+                            autofocus required>
+                    </div>
+
+                    <!-- Input Merek Produk -->
+                    <div class="input-box-profile">
+                        <label for="merekproduct" class="details">Merek Product *</label>
+                        <input id="merekproduct" type="text" name="merekproduct" placeholder="Cth: Fiesta" required>
+                    </div>
+
+                    <!-- Input Rating Produk -->
+                    <div class="input-box-profile">
+                        <label for="rating" class="details">Rating Product *</label>
+                        <input id="rating" type="number" name="rating" placeholder="Nilai 1 - 5" min="1" max="5"
+                            required>
+                    </div>
+
+                    <!-- Input Harga Produk -->
+                    <div class="input-box-profile">
+                        <label for="hargaproduct" class="details">Harga Product *</label>
+                        <input id="hargaproduct" type="text" name="hargaproduct" placeholder="Cth: 48.000" required>
+                    </div>
+
+                    <!-- Input Berat Produk -->
+                    <div class="input-box-profile">
+                        <label for="beratproduct" class="details">Berat Product *</label>
+                        <input id="beratproduct" type="text" name="beratproduct" placeholder="Cth: 500 gr" required>
+                    </div>
+
+                    <!-- Input Stock Produk -->
+                    <div class="input-box-profile">
+                        <label for="stokproduct" class="details">Stok Product *</label>
+                        <input id="stokproduct" type="text" name="stokproduct"
+                            placeholder="Tersedia Selalu / Jmlh Product" required>
+                    </div>
+
+                    <!-- Input Massa Simpan Product -->
+                    <div class="input-box-profile">
+                        <label for="masasimpanproduct" class="details">Masa Penyimpanan *</label>
+                        <input id="masasimpanproduct" type="text" name="masasimpanproduct"
+                            placeholder="Cth: 1 Tahun / 6 Bulan" required>
+                    </div>
+
+                    <!-- Input Deskripsi Product -->
+                    <div class="input-box-desproduct">
+                        <label for="deskripsiproduct" class="details">Deskripsi Product *</label>
+                        <textarea id="deskripsiproduct" type="text" name="deskripsiproduct"
+                            placeholder="Masukkan Deskripsi Product Anda" rows="8" required></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Button Cancel dan Submit tmbh Product -->
+                <div class="button-tmbhproduct">
+                    <!-- Button Cancel -->
+                    <a href="/seller/profile-shop/<%= alldataSellerProfile._id %>"
+                        class="btn-cancel-tmbhproduct">Cancel</a>
+
+                    <!-- Button Daftar Toko -->
+                    <button type="submit" class="btn-add-product">Tambah Product</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</section>
+<!-- Add New Product Section -->
+
+
+
+
+
+<script src="/js/navbarscript.js"></script>
+<script src="/js/upimgproduct.js"></script>
+<script src="/js/scrolltotop.js"></script>
+<script src="/js/subscribeform.js"></script>
