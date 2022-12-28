@@ -1684,19 +1684,14 @@ exports.add_new_product_page_post = async (req, res) => { // function middleware
 
         let allowedExtension = ['.png', '.jpg', '.jpeg', '.jfif', '.gif', '.webp']; //  ekstensi file yg diizinkan
 
-        // filter extensi file yg bisa diupload
-        for (let x = 0; x < req.files.picproducts.length; x++) {
+        // Filter extensi file yg bisa diupload, baik itu user upload 1 file atau lebih dari 1 file
+        if (!(Array.isArray(req.files.picproducts))) { // untk fitler ekstensi file yg diupload, jika file yg diupload hanya 1 file, maka...
 
-            let fileNameExtension = path.extname(req.files.picproducts[x].name); // ambil ekstensi file yg diupload
+            let fileNameExtension = path.extname(req.files.picproducts.name); // ambil ekstensi file yg diupload
 
             if (!allowedExtension.includes(fileNameExtension)) {  // Cek extensi file image yg diupload
 
-                // loop untk hapus file yg gagal diupload / file yg tidak sesuai ekstensi
-                for (let y = 0; y < req.files.picproducts.length; y++) {
-
-                    fs.unlinkSync(`${req.files.picproducts[y].tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
-
-                }
+                fs.unlinkSync(`${req.files.picproducts.tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
 
                 req.session.msgFlsh = 'Harap Upload File Gambar Hanya Dengan Ekstensi .png, .jpg, .jpeg, .jfif, .gif, .webp'; // kirim pesan flash ke client
                 req.session.save((err) => { // Untuk Pastikan session sudah tersimpan
@@ -1708,17 +1703,39 @@ exports.add_new_product_page_post = async (req, res) => { // function middleware
                 return; // hentikan proses
             }
 
-        }
+        } else { // untk fitler ekstensi file yg diupload, jika file yg diupload lebih dari 1 file, filter semuanya dulu
 
-        // pastikan file image yg diupload, tidak kurang dari 4 file
-        if (req.files.picproducts.length < 4) {
+            for (let x = 0; x < req.files.picproducts.length; x++) {
 
-            // loop untk hapus file yg tdk jadi di upload krena kurang dari 4 file
-            for (let z = 0; z < req.files.picproducts.length; z++) {
+                let fileNameExtension = path.extname(req.files.picproducts[x].name); // ambil ekstensi file yg diupload
 
-                fs.unlinkSync(`${req.files.picproducts[z].tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
+                if (!allowedExtension.includes(fileNameExtension)) {  // Cek extensi file image yg diupload
+
+                    // loop untk hapus file yg gagal diupload / file yg tidak sesuai ekstensi
+                    for (let y = 0; y < req.files.picproducts.length; y++) {
+
+                        fs.unlinkSync(`${req.files.picproducts[y].tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
+
+                    }
+
+                    req.session.msgFlsh = 'Harap Upload File Gambar Hanya Dengan Ekstensi .png, .jpg, .jpeg, .jfif, .gif, .webp'; // kirim pesan flash ke client
+                    req.session.save((err) => { // Untuk Pastikan session sudah tersimpan
+                        if (err) {
+                            console.log(err);
+                        }
+                        res.redirect(`/seller/add-new-product/${req.params.idSeller}`); // redirect ke halaman Form Add New Product
+                    });
+                    return; // hentikan proses
+                }
 
             }
+
+        }
+
+        // Filter supaya img yg di upload tdk kurang dari 4 file image dan buat validasi khusus klu req.files.picproducts bukan array krena artinya user hanya upload 1 file image
+        if (!(Array.isArray(req.files.picproducts))) {  // klu req.files.picproducts bukan array, artinya itu hanya 1 file image yg diupload, krena klu user up 1 image maka req.files.picproducts akan berupa object bukan array
+
+            fs.unlinkSync(`${req.files.picproducts.tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
 
             req.session.msgFlsh = 'Harap Mengupload Minimal 4 Gambar Untk 1 Produk.'; // kirim pesan flash ke client
             req.session.save((err) => { // Untuk Pastikan session sudah tersimpan
@@ -1729,7 +1746,26 @@ exports.add_new_product_page_post = async (req, res) => { // function middleware
             });
             return; // hentikan proses
 
-        }
+        } else
+            if (req.files.picproducts.length < 4) {  // klu file image yg diupload kurang dari 4 file, maka...
+
+                // loop untk hapus file yg tdk jadi di upload krena kurang dari 4 file
+                for (let z = 0; z < req.files.picproducts.length; z++) {
+
+                    fs.unlinkSync(`${req.files.picproducts[z].tempFilePath}`);  // pakai fs.unlinkSync, supaya file yg gagal diupload, bisa langsung dihapus dari folder temp
+
+                }
+
+                req.session.msgFlsh = 'Harap Mengupload Minimal 4 Gambar Untk 1 Produk.'; // kirim pesan flash ke client
+                req.session.save((err) => { // Untuk Pastikan session sudah tersimpan
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.redirect(`/seller/add-new-product/${req.params.idSeller}`); // redirect ke halaman Form Add New Product
+                });
+                return; // hentikan proses
+
+            }
         // VALIDASI FILE IMAGE PRODUCTS DARI FORM ADD NEW PRODUCT
 
 
