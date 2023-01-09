@@ -183,6 +183,11 @@ app.delete('/api/v1/del-invoice/:idInvoice', isAuth, appcontroller.del_invoice_a
 
 
 
+// Route untk Save User Checkout Transaction
+app.post('/api/v1/saveTransaction', isAuth, appcontroller.saveTransaction_api); // klu ada yg Req POST ke '/api/v1/saveTransaction', jlnkan function middleware appcontroller.saveTransaction_api
+
+
+
 // Route untk Register Seller Shop Page
 app.get('/seller/register-shop/:idUser', isAuth, appcontroller.register_shop_page); // klu ada Req ke '/seller/register-shop/:idUser', jlnkan function midleware appcontroller.register_shop_page
 app.post('/seller/register-shop/:idUser', isAuth, appcontroller.register_shop_page_post); // klu ada Req POST ke '/seller/register-shop/:idUser', jlnkan function midleware appcontroller.register_shop_page_post

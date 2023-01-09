@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs"); // import third party module bcryptjs untk e
 const { nanoid } = require("nanoid"); // import nanoid untuk generate id. Untk versi nya perhatikan https://github.com/ai/nanoid/blob/main/CHANGELOG.md#40
 const User = require("../models/user.js"); // import local module user.js untk mengakses model User
 const Seller = require("../models/seller.js"); // import local module seller.js untk mengakses model Seller
+const Transaction = require("../models/transaction.js"); // import local module transaction.js untk mengakses model Transaction
 const { buatObjectId } = require("../models/objectid.js"); // import local module objectid.js untk mengakses function buatObjectId
 const { registerValidation, loginValidation, sendEmailForgotPassValidation, regexMongoDbId, updateProfileValidation, changePassValidation, registerShopValidation, addNewProductValidation, updateSellerDashboardValidation, updateSellerProductValidation } = require('../utils/validation.js'); // import local modules dari validation.js / kita mau require schema validation yg kita sdh buat
 const { formatRupiah, rupiahToString } = require('../utils/formatrupiah.js'); // import local module formatrupiah.js untk format rupiah
@@ -1230,7 +1231,8 @@ exports.payment_virtual_api = async (req, res) => { // function middleware untk 
             .then((result) => { // klu sukses, maka...
 
                 res.status(201).json({ // kirim data invoice Url ke client untk ditampilkan di halaman payment virtual
-                    dataInvoiceUrl: alldataInvoice.invoice_url
+                    dataInvoiceUrl: alldataInvoice.invoice_url,
+                    idinvoice: alldataInvoice.id
                 });
 
             });
@@ -1354,6 +1356,53 @@ exports.del_invoice_api = async (req, res) => { // function middleware untk rout
                 })
 
             })
+
+    } catch (error) { // klu gagal, maka...
+
+        res.status(500).json({  // kirim error ke client, krena error 500 itu error internal server
+            message: error
+        });
+
+    }
+
+}
+
+
+
+
+exports.saveTransaction_api = async (req, res) => { // function middleware untk route POST /api/v1/saveTransaction
+    try { // klu sukses, maka...
+
+        let userId = await req.session.dataProfile.userId; // ambil Id User yg sedang login atau yg sdg pesan
+
+        let alldataUserProfile = await User.findById(userId); // ambil data user dari database berdasarkan id mereka
+
+        let { deskripsiproduk, metodepembayaran, paymentgate_invoiceid } = req.body // ambil data transaksi yg user buat
+
+        let keteranganproduk = alldataUserProfile.cartproducts; // ambil isi cart user supaya dimasukkan ke variabel keterangan produk
+
+
+
+        let transaction = new Transaction({  // Format kalau mau save data transaksi user ke database
+            idpembeli: alldataUserProfile._id,
+            namapembeli: alldataUserProfile.fullname,
+            emailpembeli: alldataUserProfile.email,
+            notelppembeli: alldataUserProfile.notelp,
+            deskripsiproduk: deskripsiproduk,
+            keteranganproduk: keteranganproduk,
+            metodepembayaran: metodepembayaran,
+            paymentgate_invoiceid: paymentgate_invoiceid,
+        });
+
+
+        transaction.save((err, data) => {  // Untk Save ke database transaction
+            if (err) {
+                console.log(err);
+            }
+
+            res.status(201).redirect('back'); // tampilkan halaman yg sedang user berada
+
+        });
 
     } catch (error) { // klu gagal, maka...
 

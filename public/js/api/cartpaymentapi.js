@@ -116,7 +116,7 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
 
         if (UserPayMethod === 'WhatsApp') { // klu user memilih method payment payout via WhatsApp, maka...
 
-            checkoutViaWa(); // menjalankan fungsi chatPayoutWa()
+            await checkoutViaWa(); // menjalankan fungsi chatPayoutWa()
 
         }
 
@@ -148,6 +148,8 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
                 });
             });
 
+            let despembelianproduk = descriptionInvoice.substring(0, descriptionInvoice.length - 4); // ambil deskripsi product yg akan di beli dan ksh msk ke variable despembelianproduk
+
             totalAmount = document.querySelector('#total').innerText.replace(/[^\w\s]/gi, ''); // ambil total amount seluruh item dari cart
             // Ambil semua data Product yg mau di pakai
 
@@ -155,6 +157,9 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
             buttonPayOut.innerText = 'Please Wait...'; // ubah text button checkout pay menjadi 'Please Wait...'
 
             let paymentUrl = await checkoutVirtualAccount(); // menjalankan fungsi checkoutVirtualAccount()
+
+
+            await saveTransaction(despembelianproduk, 'Xendit', paymentUrl.idinvoice); // save transaksi yg dilakukan oleh user ke database Transaction
 
 
             window.open(paymentUrl.dataInvoiceUrl, '_blank'); // buka payment url di browser
@@ -171,7 +176,6 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
             setTimeout(async () => { // tahan 3 detik dlu, baru ambil data invoice dari database user
 
                 let hasilUserInvoice = await ambilInvoice(); // ambil data invoice yg user pernah buat
-
 
                 if (hasilUserInvoice.dataInvoice.length === 0) { // klu data invoice kosong, maka...
                     tableContainer.innerHTML = `<tr><td colspan="6" style="font-size: 1.8rem"> <i class="far fa-frown"></i> Belum Ada Pesanan <i class="far fa-frown"></i></td></tr>`; // tampilkan pesan
@@ -196,7 +200,7 @@ buttonPayOut.addEventListener('click', async function (e) { // klu btn checkout 
 
 
 
-function checkoutViaWa() { // function untuk checkout via WhatsApp
+async function checkoutViaWa() { // function untuk checkout via WhatsApp
 
     let waAPI = '';
     let textChatWA = '';
@@ -262,6 +266,11 @@ function checkoutViaWa() { // function untuk checkout via WhatsApp
 
     textChatWA += jdlProduk.substring(0, jdlProduk.length - 4) + '\n\n';
 
+
+
+    await saveTransaction(jdlProduk.substring(0, jdlProduk.length - 4), 'WhatsApp'); // save transaksi yg dilakukan oleh user ke database Transaction
+
+
     window.open(waAPI + textChatWA, '_blank'); // buka tab baru untuk mengirim pesan Checkout ke seller via WhatsApp
 
 }
@@ -316,6 +325,23 @@ function delInvoice(id) {
         method: 'DELETE',
     })
         .then(status);  // cek status response pada function status
+}
+
+function saveTransaction(deskripsiproduk, metodepembayaran, paymentgate_invoiceid) {
+    let dataProduct = {
+        'deskripsiproduk': deskripsiproduk,
+        'metodepembayaran': metodepembayaran,
+        'paymentgate_invoiceid': paymentgate_invoiceid
+    };
+
+    return fetch(`/api/v1/saveTransaction`, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(dataProduct)
+    })
+        .then((response) => {
+            return response.url;
+        });
 }
 
 
