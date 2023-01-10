@@ -61,15 +61,17 @@
                     <!-- Full name input -->
                     <div class="input-box-profile">
                         <label for="fullname" class="details">Nama Lengkap *</label>
-                        <input id="fullname" type="text" name="fullname" placeholder="Enter your name"
-                            value="<%= alldataUserProfile.fullname %>" autofocus required>
+                        <input id="fullname" type="text" pattern="^.{4,}$" title="Tolong masukkan minimal 4 karakter"
+                            name="fullname" placeholder="Enter your name" value="<%= alldataUserProfile.fullname %>"
+                            autofocus required>
                     </div>
 
                     <!-- Username input -->
                     <div class="input-box-profile">
                         <label for="username" class="details">Nama Pengguna *</label>
-                        <input id="username" type="text" name="username" placeholder="Enter your username"
-                            value="<%= alldataUserProfile.username %>" required>
+                        <input id="username" type="text" pattern="^[a-zA-Z0-9]+$"
+                            title="Tolong masukkan hanya karakter Alpha-Numeric" name="username"
+                            placeholder="Enter your username" value="<%= alldataUserProfile.username %>" required>
                     </div>
 
                     <!-- Email input -->
@@ -82,7 +84,8 @@
                     <!-- Phone Number input -->
                     <div class="input-box-profile">
                         <label for="notelp" class="details">Nomor Telepon *</label>
-                        <input id="notelp" type="tel" name="notelp" placeholder="Cth: 6285155082349"
+                        <input id="notelp" type="tel" pattern="^\+?[0-9]{10,13}$"
+                            title="Tolong masukkan no. Telp yang Valid" name="notelp" placeholder="Cth: 6285155082349"
                             value="<%= alldataUserProfile.notelp %>" required>
                     </div>
 

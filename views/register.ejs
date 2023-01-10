@@ -45,14 +45,16 @@
                     <!-- Full name input -->
                     <div class="input-box">
                         <label for="fullname" class="details">Full Name *</label>
-                        <input id="fullname" type="text" name="fullname" placeholder="Enter your name" autofocus
-                            required>
+                        <input id="fullname" type="text" pattern="^.{4,}$" title="Tolong masukkan minimal 4 karakter"
+                            name="fullname" placeholder="Enter your name" autofocus required>
                     </div>
 
                     <!-- Username input -->
                     <div class="input-box">
                         <label for="username" class="details">Username *</label>
-                        <input id="username" type="text" name="username" placeholder="Enter your username" required>
+                        <input id="username" type="text" pattern="^[a-zA-Z0-9]+$"
+                            title="Tolong masukkan hanya karakter Alpha-Numeric" name="username"
+                            placeholder="Enter your username" required>
                     </div>
 
                     <!-- Email input -->
@@ -64,20 +66,25 @@
                     <!-- Phone Number input -->
                     <div class="input-box">
                         <label for="notelp" class="details">Phone Number *</label>
-                        <input id="notelp" type="tel" name="notelp" placeholder="Cth: 6285155082349" required>
+                        <input id="notelp" type="tel" pattern="^\+?[0-9]{10,13}$"
+                            title="Tolong masukkan no. Telp yang Valid" name="notelp" placeholder="Cth: 6285155082349"
+                            required>
                     </div>
 
                     <!-- Password input -->
                     <div class="input-box">
                         <label for="pass" class="details">Password *</label>
-                        <input id="pass" type="password" name="password" placeholder="Enter your password" required>
+                        <input id="pass" type="password" pattern="^(?=.*\d)[A-Za-z\d]{5,30}$"
+                            title="Password setidaknya terdiri dari satu angka serta minimal 5 karakter dan maksimal 30 karakter"
+                            name="password" placeholder="Enter your password" required>
                     </div>
 
                     <!-- Password Confirm input -->
                     <div class="input-box">
                         <label for="passkonfirm" class="details">Confirm Password *</label>
-                        <input id="passkonfirm" type="password" name="password_confirmation"
-                            placeholder="Confirm your password" required>
+                        <input id="passkonfirm" type="password" pattern="^(?=.*\d)[A-Za-z\d]{5,30}$"
+                            title="Password setidaknya terdiri dari satu angka serta minimal 5 karakter dan maksimal 30 karakter"
+                            name="password_confirmation" placeholder="Confirm your password" required>
                     </div>
 
                 </div>

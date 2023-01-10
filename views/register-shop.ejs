@@ -60,8 +60,8 @@
                     <!-- Nama toko input -->
                     <div class="input-box-profile">
                         <label for="namatoko" class="details">Nama Toko *</label>
-                        <input id="namatoko" type="text" name="namatoko" placeholder="Masukkan Nama Toko" autofocus
-                            required>
+                        <input id="namatoko" type="text" pattern="^.{5,}$" title="Tolong masukkan minimal 5 karakter"
+                            name="namatoko" placeholder="Masukkan Nama Toko" autofocus required>
                     </div>
 
                     <!-- Alamat toko input -->
@@ -81,7 +81,8 @@
                     <!-- No. Telp pemilik input -->
                     <div class="input-box-profile">
                         <label for="notelp" class="details">Nomor Telepon *</label>
-                        <input id="notelp" type="tel" name="notelp" placeholder="Enter your number"
+                        <input id="notelp" type="tel" pattern="^\+?[0-9]{10,13}$"
+                            title="Tolong masukkan no. Telp yang Valid" name="notelp" placeholder="Enter your number"
                             value="<%= alldataUserProfile.notelp %>" required>
                     </div>
 

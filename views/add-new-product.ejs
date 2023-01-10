@@ -102,15 +102,16 @@
                     <!-- Informasi Toko Penjual Product -->
                     <div class="input-box-profile">
                         <label for="penjual" class="details">Toko Penjual *</label>
-                        <input id="penjual" type="text" name="penjual" placeholder="Masukkan Nama Toko Penjual"
+                        <input id="penjual" type="text" pattern="^.{5,}$" title="Tolong masukkan minimal 5 karakter"
+                            name="penjual" placeholder="Masukkan Nama Toko Penjual"
                             value="<%= alldataSellerProfile.namatoko %>" readonly required>
                     </div>
 
                     <!-- Input Nama Produk -->
                     <div class="input-box-profile">
                         <label for="namaproduct" class="details">Nama Product *</label>
-                        <input id="namaproduct" type="text" name="namaproduct" placeholder="Masukkan Nama Product"
-                            autofocus required>
+                        <input id="namaproduct" type="text" pattern="^.{5,}$" title="Tolong masukkan minimal 5 karakter"
+                            name="namaproduct" placeholder="Masukkan Nama Product" autofocus required>
                     </div>
 
                     <!-- Input Merek Produk -->
@@ -129,13 +130,17 @@
                     <!-- Input Harga Produk -->
                     <div class="input-box-profile">
                         <label for="hargaproduct" class="details">Harga Product *</label>
-                        <input id="hargaproduct" type="text" name="hargaproduct" placeholder="Cth: 48.000" required>
+                        <input id="hargaproduct" type="text" pattern="^[\s]?[0-9]{1,3}(?:[.][0-9]{3})*(?:[,][0-9]{2})?$"
+                            title="Tolong masukkan harga sesuai dengan format angka: 8.000" name="hargaproduct"
+                            placeholder="Cth: 48.000" required>
                     </div>
 
                     <!-- Input Berat Produk -->
                     <div class="input-box-profile">
                         <label for="beratproduct" class="details">Berat Product *</label>
-                        <input id="beratproduct" type="text" name="beratproduct" placeholder="Cth: 500 gr" required>
+                        <input id="beratproduct" type="text" pattern="^[0-9]+\s(kg|gr)$"
+                            title="Tolong masukkan berat sesuai dengan cth format: 500 gr / 1 kg" name="beratproduct"
+                            placeholder="Cth: 500 gr" required>
                     </div>
 
                     <!-- Input Stock Produk -->
