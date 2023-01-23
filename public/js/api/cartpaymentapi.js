@@ -268,10 +268,19 @@ async function checkoutViaWa() { // function untuk checkout via WhatsApp
 
 
 
+    let originalButtonPayOut = buttonPayOut.innerHTML; // simpan isi btn checkout pay ke variabel originalButtonPayOut
+    buttonPayOut.innerText = 'Please Wait...'; // ubah text button checkout pay menjadi 'Please Wait...'
+
+
+
     await saveTransaction(jdlProduk.substring(0, jdlProduk.length - 4), 'WhatsApp'); // save transaksi yg dilakukan oleh user ke database Transaction
 
 
     window.open(waAPI + textChatWA, '_blank'); // buka tab baru untuk mengirim pesan Checkout ke seller via WhatsApp
+
+
+
+    buttonPayOut.innerHTML = `${originalButtonPayOut}`; // ubah kembali text btn menjadi pay Rp ...
 
 }
 
