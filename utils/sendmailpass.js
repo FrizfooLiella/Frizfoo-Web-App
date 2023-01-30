@@ -43,7 +43,7 @@ async function sendMailForgotPass(Mail, passRecovery, user) {
             <hr style="border: 1px solid #e0e0e0;">
 
             <div style="text-align: center; max-width: 600px; background-color: #c1ccfd;  margin:0px auto; border-radius: 5px; padding: 30px"> 
-                Created With ❤ By Liella! | © 2022 All rights reserved.
+                Created With ❤ By Liella! | © 2023 All rights reserved.
             </div>
 
         </div>
@@ -51,7 +51,8 @@ async function sendMailForgotPass(Mail, passRecovery, user) {
             `,
             attachments: [
                 {
-                    path: './public/img/logo.png',
+                    filename: 'Frizfoo.png',
+                    path: './public/img/logoSendMail.png',
                     cid: 'frizfooembedlogo' //same cid value as in the html img src, MUST UNIQUE
                 }
             ]
