@@ -2381,6 +2381,29 @@ exports.search_page = async (req, res) => { // function middleware untk route GE
 
 
 
+exports.offline_page = async (req, res) => { // function middleware untk route GET '/offline'
+    try { // klu sukses, maka...
+
+        let dataProfile = await req.session.dataProfile; // cek user sdh login atau blm, lalu ambil data dataProfile dari session user tersebut klu sdh login
+
+        res.render('offline.ejs', { // panggil file offline.ejs dlm folder views dan kirim data dibawah ini
+            layout: 'layouts/main-layout.ejs', // kasih tau layoutnya adalah layouts/main-layout.ejs
+            title: 'Offline Page | Frizfoo', // title dari halaman ini
+            cdnswiperjs: '',
+            dataProfile: dataProfile
+        })
+
+    } catch (error) { // klu gagal, maka...
+
+        res.status(400).send(error); // kirim error ke client
+
+    }
+
+}
+
+
+
+
 exports.not_found_page = async (req, res) => { // function middleware untk route GET '/sembarang-url'
     try { // klu sukses, maka...
 

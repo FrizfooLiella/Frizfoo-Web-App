@@ -8,6 +8,7 @@ const session = require('express-session'); // import express middleware yaitu e
 const MongoDBStore = require('connect-mongodb-session')(session); // import third party module connect-mongodb-session untk store session ke database mongoDB
 const flash = require('connect-flash'); // import thrid party middleware yaitu untuk flash message
 const dotenv = require('dotenv'); // import third party module dotenv to read .env file
+const path = require('path'); // import core module Node.js yaitu path
 
 
 const cookies = require('cookie-parser'); // import third party module cookie-parser
@@ -226,6 +227,19 @@ app.put('/seller/update-seller-product/:idProduct', isAuth, appcontroller.update
 
 // Route untk Search Page
 app.get('/search', appcontroller.search_page); // klu ada Req ke '/search', jlnkan function midleware appcontroller.search_page'
+
+
+
+
+// Route untk Load PWA File
+// Untk regist service worker, kita pakai swregist.js yang ada di folder public/js, jadi aksesnya, lsg ke file tsb. Jadi nd perlu bikin route khusus
+app.get('/manifest.json', (req, res) => { // Mengatur route khusus untuk file manifest.json di luar folder public
+    res.sendFile(path.join(__dirname, 'manifest.json')); // Mengirim file manifest.json ke client
+});
+app.get('/sw.js', (req, res) => { // Mengatur route khusus untuk file sw.js di luar folder public
+    res.sendFile(path.join(__dirname, 'sw.js')); // Mengirim file sw.js ke client
+});
+app.get('/offline', appcontroller.offline_page); // klu ada Req ke '/offline', jlnkan function midleware appcontroller.offline_page
 
 
 
