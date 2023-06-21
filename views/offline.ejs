@@ -1,30 +1,347 @@
-<!-- Offline Page Section -->
-<section class="pagenot-section" id="pagenot-found-section">
-    <div class="container-pagenot-found">
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Error Page Title -->
-        <h1>Oops! <span>Your Internet is Off...</span></h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [ Meta Tag SEO ] -->
+    <title>
+        <%= title %>
+    </title>
+    <meta
+        content='infomarsi frozen food, frozen food , makanan beku , makanan cepat saji , beli makanan beku , beli frozen food , sosis , bakso ikan, nugget, siomay, kentang goreng'
+        name='keywords' />
+    <meta
+        content='Selamat datang di Frizfoo, Suatu web application yang dapat menghubungkan pembeli dan penjual dalam satu komunitas, tetapi hanya berfokus pada produk frozen food.'
+        name='description' />
 
-        <!-- Image Offline -->
-        <div class="img-wrapper">
-            <img src="/img/offline.gif" alt="404 Error Image" class="banner-animation">
+    <!-- CDN for SwiperJS -->
+    <% if (cdnswiperjs) { %>
+
+    <%- cdnswiperjs %>
+
+    <% } %>
+
+    <!-- cari cdnjs font awesome lalu ambil library untuk font-awesome  -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <!-- File Custom Css  -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- manifest.json tdk perlu di load di offline mode -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+
+    <!-- Set theme color -->
+    <meta name="theme-color" content="#c1ccfd" />
+
+    <!-- File Favicon Frizfoo  -->
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google Analytics tag (gtag.js) Script -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DY20K85JXY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DY20K85JXY');
+    </script>
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- Navbar / Header Section -->
+    <header id="header" class="">
+        <div class="maxlgcontainernav">
+
+            <!-- Logo Frizfoo -->
+            <a href="/">
+                <img src="/img/logo.webp" class="logo" alt="Logo Frizfoo" width="160" height="50">
+            </a>
+
+            <!-- Navbar List -->
+            <nav class="">
+                <ul id="navbar">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/product">Products</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <!-- <a href="#" id="close"><i class="far fa-times  fa-spin"></i></a> -->
+                </ul>
+            </nav>
+
+            <!-- Navbar Icon Section-->
+            <div class="icons">
+                <ul id="nav-icon-list">
+                    <!-- Untuk Icon Navigasi Mobile -->
+                    <button id="menu-btn-mobile" class="fas fa-bars" aria-label="mobileNavigation"></button>
+                    <!-- Untuk Icon Search -->
+                    <button id="search-btn" class="fas fa-search" aria-label="searchToggle"></button>
+                    <!-- Untuk Icon Cart -->
+                    <a href="/cart">
+                        <i class="far fa-shopping-bag"></i>
+                        <% if (dataProfile) { %>
+
+                        <div class="frizfoo-cart-number-badge"><%= dataProfile.userCartProducts %></div>
+
+                        <% } else {%>
+
+                        <div class="frizfoo-cart-number-badge">01</div>
+
+                        <% } %>
+                    </a>
+                    <!-- Untuk Icon Login/Signup -->
+                    <button id="signlog-btn" class="fas fa-user" aria-label="signlogToggle"></button>
+                </ul>
+            </div>
+
+            <!-- Navbar Search Section -->
+            <form action="/search" method="get" class="search-form" id="formsearch">
+                <input type="text" name="q" placeholder="Search Product Here..." id="search-inputt" required>
+                <button type="submit" for="search-box" class="fas fa-search" id="search-buttonasli"
+                    aria-label="searchButton"></button>
+            </form>
+
+
+            <!-- Box Profile User Content -->
+            <% if (dataProfile) { %>
+
+            <div class="boxusercontent pen-userpro-signlog">
+                <div class="pmbungkus-user-content">
+                    <!-- Header User Content -->
+                    <div class="header-user-content">
+                        <div class="small-profile">
+                            <img src="https://drive.google.com/uc?export=view&id=<%=dataProfile.userPicId%>"
+                                alt="User Profile Image">
+                        </div>
+                        <p>
+                            <%= dataProfile.username %>
+                        </p>
+                    </div>
+
+                    <!-- User Content List -->
+                    <div class="list-user-content">
+                        <a href="/profile/<%= dataProfile.userId %> ">
+                            <i class="fas fa-id-card"></i>
+                            <p>Profile Saya</p>
+                        </a>
+                    </div>
+
+                    <!-- End User Content -->
+                    <div class="footer-user-content">
+                        <a href="/logout">
+                            <i class="fas fa-sign-out"></i>
+                            <p>LogOut</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <% } else {%>
+
+            <!-- Box User Login/Signup -->
+            <div class="boxusersignlog pen-userpro-signlog">
+                <div class="pmbungkus-box-signlog">
+                    <!-- Header Box SignLog -->
+                    <div class="header-box-signlog">
+                        <div class="small-profile">
+                            <img src="/img/Profil.webp" alt="Profile Picture">
+                        </div>
+                        <p>Welcome User</p>
+                    </div>
+
+                    <!-- Box SignLog List -->
+                    <div class="list-box-signlog">
+                        <a href="/login" class="loginbtn normalbtn">
+                            <i class="fas fa-sign-in"></i>
+                            Login
+                        </a>
+
+                        <a href="/register" class="signupbtn normalbtn">
+                            <i class="fas fa-user-plus"></i>
+                            Register
+                        </a>
+                    </div>
+
+                    <!-- End Box SignLog List -->
+                    <div class="footer-box-signlog">
+                        <!-- <i class="fas fa-sign-out"></i> -->
+                        <p>Created with <i class="fas fa-heart"></i> By Liella!</p>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+
+
+        </div>
+    </header>
+    <!-- Navbar / Header Section -->
+
+
+    <!-- Offline Page Section -->
+    <section class="pagenot-section" id="pagenot-found-section">
+        <div class="container-pagenot-found">
+
+            <!-- Error Page Title -->
+            <h1>Oops! <span>Your Internet is Off...</span></h1>
+
+            <!-- Image Offline -->
+            <div class="img-wrapper">
+                <img src="/img/offline.gif" alt="404 Error Image" class="banner-animation">
+            </div>
+
+            <!-- Offline Page Description -->
+            <div class="text-error-page">
+                <p>Sorry We Cant Find The Page You Are Looking For.</p>
+                <p>Please Make Sure You Have Internet Connection And Try Again.</p>
+            </div>
+            <a href="/" class="btn-back-home">Back To Home</a>
+
+        </div>
+    </section>
+    <!-- Offline Page Section -->
+
+
+    <!-- Newsletter Section -->
+    <section class="newslet-section reveal" id="news-letter-section">
+        <div class="container-newslet">
+            <!-- Bagian text newsletternya -->
+            <div class="newstext">
+                <h2>Subscribe for Offers and News</h2>
+                <p>Get E-mail updates about our latest Products and <span>Special offers.</span></p>
+            </div>
+
+            <!-- Bagian Form Newsletternya -->
+            <div class="form">
+                <form class="newsletter-form" action="https://formspree.io/f/xzbwbgyl" method="POST"
+                    id="my-subscribeform">
+                    <input type="email" placeholder="Your Email Address" name="email" required>
+                    <button type="submit" class="subnews-btn" style="pointer-events: none;">Subscribe</button>
+                </form>
+            </div>
         </div>
 
-        <!-- Offline Page Description -->
-        <div class="text-error-page">
-            <p>Sorry We Cant Find The Page You Are Looking For.</p>
-            <p>Please Make Sure You Have Internet Connection And Try Again.</p>
-        </div>
-        <a href="/" class="btn-back-home">Back To Home</a>
+    </section>
+    <!-- Newsletter Section -->
 
+
+    <!-- Footer Section -->
+    <footer class="footer-section reveal" id="footer-web-section">
+
+        <div class="footer-top">
+
+            <!-- Footer About Us Section -->
+            <div class="about boxes">
+                <h2>About us</h2>
+
+                <div class="kontenfooter">
+                    <p>Frizfoo merupakan Suatu Web Application yang dapat menghubungkan pembeli dan penjual
+                        dalam
+                        satu
+                        komunitas, tetapi hanya
+                        berfokus pada produk Frozen Food.
+                    </p>
+
+                    <div class="social-list">
+                        <a aria-label='facebookShare' href="/" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a aria-label='twitterShare' href="/" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a aria-label='instagramShare' href="/" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a aria-label='youtubeShare' href="https://youtu.be/FNFutPOVbkA" target="_blank" rel="noopener">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Company Section -->
+            <div class="company boxes">
+                <h2>Company</h2>
+
+                <div class="kontenfooter">
+                    <ul class="footer-list">
+                        <li>
+                            <a href="/product">
+                                <i class="fas fa-angle-double-right"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about">
+                                <i class="fas fa-angle-double-right"></i>
+                                <span>About Us</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact">
+                                <i class="fas fa-angle-double-right"></i>
+                                <span>Contact Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Address Section -->
+            <div class="address boxes">
+                <h2>Address</h2>
+
+                <div class="kontenfooter">
+                    <div class="place">
+                        <i class="fas fa-map-marker-alt iconaddress"></i>
+                        <span class="text">Makassar, Indonesia</span>
+                    </div>
+                    <div class="telepon">
+                        <i class="fas fa-phone-alt iconaddress"></i>
+                        <span class="text">085173448234</span>
+                    </div>
+                    <div class="email">
+                        <i class="fas fa-envelope iconaddress"></i>
+                        <span class="text">frizfoo@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span class="credit">Created By <a href="/" target="_blank" rel="noopener">Liella!</a> | </span>
+            <span class="far fa-copyright"></span>
+            <span></span>
+        </div>
+
+    </footer>
+    <!-- Footer Section -->
+
+
+    <!-- Scroll to Top Section -->
+    <div id="progress-scroll">
+        <span id="progress-value"><i class="far fa-hand-point-up"></i></span>
     </div>
-</section>
-<!-- Offline Page Section -->
+    <!-- Scroll to Top Section -->
 
 
 
+    <!-- All JS File -->
+    <script src="/js/navbarscript.js"></script>
+    <script src="/js/scrolltotop.js"></script>
+    <script src="/js/subscribeform.js"></script>
+</body>
 
-
-<script src="/js/navbarscript.js"></script>
-<script src="/js/scrolltotop.js"></script>
-<script src="/js/subscribeform.js"></script>
+</html>

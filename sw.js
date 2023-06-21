@@ -8,6 +8,7 @@ var urlsToCache = [  // Ini adalah dokumen yang akan kita simpan di cache, dan f
     '/css/style.css', // file css yang akan kita simpan di cache
     '/js/navbarscript.js', // file JS yang akan kita simpan di cache
     '/js/scrolltotop.js', // file JS yang akan kita simpan di cache
+    '/js/subscribeform.js', // file JS yang akan kita simpan di cache
     '/img/logo.webp', // Gambar logo web yang akan kita simpan di cache
     '/img/offline.gif', // Ini adalah file gambar offline page yang akan kita simpan di cache, ketika tidak ada koneksi internet
 ];

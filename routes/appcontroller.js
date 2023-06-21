@@ -2387,7 +2387,7 @@ exports.offline_page = async (req, res) => { // function middleware untk route G
         let dataProfile = await req.session.dataProfile; // cek user sdh login atau blm, lalu ambil data dataProfile dari session user tersebut klu sdh login
 
         res.render('offline.ejs', { // panggil file offline.ejs dlm folder views dan kirim data dibawah ini
-            layout: 'layouts/main-layout.ejs', // kasih tau layoutnya adalah layouts/main-layout.ejs
+            layout: false, // Mengabaikan penggunaan layout
             title: 'Offline Page | Frizfoo', // title dari halaman ini
             cdnswiperjs: '',
             dataProfile: dataProfile
