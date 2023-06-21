@@ -2,7 +2,8 @@
     "name": "Frizfoo",
     "short_name": "Frizfoo",
     "description": "Frizfoo merupakan Suatu Web Application yang dapat menghubungkan pembeli dan penjual dalam satu komunitas, tetapi hanya berfokus pada produk Frozen Food.",
-    "language": "id",
+    "lang": "id",
+    "dir": "ltr",
     "icons": [
         {
             "src": "/img/pwaicons/frizfoo-icons-192.png",
@@ -24,11 +25,27 @@
         }
     ],
     "start_url": "/",
+    "id": "/",
     "background_color": "#FFFFFF",
     "display": "standalone",
+    "display_override": [
+        "window-controls-overlay"
+    ],
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "categories": [
+        "food",
+        "business",
+        "e-commerce",
+        "community",
+        "marketplace"
+    ],
     "scope": "/",
     "theme_color": "#c1ccfd",
     "orientation": "portrait",
+    "prefer_related_applications": false,
+    "related_applications": [],
     "shortcuts": [
         {
             "name": "Products | Frizfoo",
@@ -66,5 +83,36 @@
                 }
             ]
         }
+    ],
+    "screenshots": [
+        {
+            "src": "/img/pwaicons/screenshot-mockup-frizfoo1.png",
+            "sizes": "1800x804",
+            "type": "image/png",
+            "platform": "wide",
+            "label": "Frizfoo mockup screenshot"
+        },
+        {
+            "src": "/img/pwaicons/screenshot-mockup-frizfoo2.png",
+            "sizes": "2880x1536",
+            "type": "image/png",
+            "platform": "wide",
+            "label": "Frizfoo Home page screenshot"
+        },
+        {
+            "src": "/img/pwaicons/screenshot-mockup-frizfoo3.png",
+            "sizes": "1919x1734",
+            "type": "image/png",
+            "platform": "wide",
+            "label": "Frizfoo Seller Dashboard screenshot"
+        }
+    ],
+    "features": [
+        "Cross Platform",
+        "Responsive",
+        "Offline Capable",
+        "Fast",
+        "Easy to Use",
+        "Secure"
     ]
 }
